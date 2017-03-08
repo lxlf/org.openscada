@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated snmp -->
+      <package
+            uri="http://openscada.org/Configuration/SNMP"
+            class="org.openscada.configuration.snmp.SnmpPackage"
+            genModel="model/snmp.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated snmp -->
+      <parser
+            type="snmp"
+            class="org.openscada.configuration.snmp.util.SnmpResourceFactoryImpl"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.scada.configuration.infrastructure.lib.driver">
+      <driverFactory
+            factoryClass="org.openscada.configuration.snmp.DriverFactoryImpl"
+            typeId="org.openscada.da.server.snmp">
+      </driverFactory>
+   </extension>
+   <extension
+         point="org.eclipse.scada.configuration.world.lib.generator">
+      <nodeElementProcessor
+            factoryClass="org.openscada.configuration.snmp.NodeElementProcessorFactoryImpl"
+            forClass="org.openscada.configuration.snmp.SnmpDriver">
+      </nodeElementProcessor>
+   </extension>
+</plugin>

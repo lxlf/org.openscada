@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?metadataRepository version='1.1.0'?>
+<repository name='openSCADA Externals Wrapper' type='org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository' version='1'>
+  <properties size='2'>
+    <property name='p2.timestamp' value='1414764319009'/>
+    <property name='p2.compressed' value='false'/>
+  </properties>
+  <units size='6'>
+    <unit id='bcprov' version='1.50.0' singleton='false'>
+      <update id='bcprov' range='[0.0.0,1.50.0)' severity='0'/>
+      <properties size='1'>
+        <property name='org.eclipse.equinox.p2.name' value='bcprov'/>
+      </properties>
+      <provides size='125'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='bcprov' version='1.50.0'/>
+        <provided namespace='osgi.bundle' name='bcprov' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.apache.bzip2' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.bc' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.cmp' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.cms' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.cms.ecc' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.crmf' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.cryptopro' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.dvcs' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.eac' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.esf' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.ess' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.gnu' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.iana' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.icao' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.isismtt' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.isismtt.ocsp' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.isismtt.x509' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.kisa' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.microsoft' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.misc' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.mozilla' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.nist' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.ntt' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.ocsp' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.oiw' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.pkcs' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.sec' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.smime' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.teletrust' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.tsp' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.ua' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.util' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.x500' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.x500.style' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.x509' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.x509.qualified' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.x509.sigi' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.asn1.x9' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.agreement' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.agreement.jpake' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.agreement.kdf' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.agreement.srp' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.commitments' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.digests' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.ec' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.encodings' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.engines' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.examples' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.generators' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.io' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.kems' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.macs' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.modes' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.modes.gcm' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.paddings' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.params' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.parsers' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.prng' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.prng.drbg' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.signers' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.tls' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.crypto.util' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.i18n' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.i18n.filter' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.io' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.dh' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.dsa' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.dstu' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.ec' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.ecgost' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.elgamal' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.gost' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.ies' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.rsa' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.util' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.asymmetric.x509' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.config' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.digest' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.keystore' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.keystore.bc' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.keystore.pkcs12' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.symmetric' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.symmetric.util' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.provider.util' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jcajce.spec' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jce' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jce.examples' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jce.exception' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jce.interfaces' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jce.netscape' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jce.provider' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.jce.spec' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.math.ec' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.ocsp' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.asn1' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.crypto' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.crypto.gmss' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.crypto.gmss.util' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.crypto.mceliece' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.crypto.rainbow' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.crypto.rainbow.util' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.jcajce.provider' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.jcajce.provider.gmss' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.jcajce.provider.mceliece' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.jcajce.provider.rainbow' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.jcajce.provider.util' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.jcajce.spec' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.pqc.math.linearalgebra' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.util' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.util.encoders' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.util.io' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.util.io.pem' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.util.test' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.x509' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.x509.examples' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.x509.extension' version='1.50.0'/>
+        <provided namespace='java.package' name='org.bouncycastle.x509.util' version='1.50.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='bcprov' version='1.50.0'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: bcprov&#xA;Bundle-Version: 1.50&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='io.netty.codec' version='4.0.19.Final' singleton='false'>
+      <update id='io.netty.codec' range='[0.0.0,4.0.19.Final)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Netty/Codec'/>
+        <property name='org.eclipse.equinox.p2.description' value='Netty is an asynchronous event-driven network application framework for     rapid development of maintainable high performance protocol servers and    clients.'/>
+        <property name='org.eclipse.equinox.p2.provider' value='The Netty Project'/>
+        <property name='org.eclipse.equinox.p2.doc.url' value='http://netty.io/'/>
+      </properties>
+      <provides size='11'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='io.netty.codec' version='4.0.19.Final'/>
+        <provided namespace='osgi.bundle' name='io.netty.codec' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.codec' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.codec.base64' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.codec.bytes' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.codec.compression' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.codec.marshalling' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.codec.protobuf' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.codec.serialization' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.codec.string' version='4.0.19.Final'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='10'>
+        <required namespace='java.package' name='com.google.protobuf' range='[2.5.0,3.0.0)' optional='true' greedy='false'/>
+        <required namespace='java.package' name='com.jcraft.jzlib' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='java.package' name='io.netty.buffer' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.channel' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.concurrent' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.internal' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.internal.logging' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='org.jboss.marshalling' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='java.package' name='sun.nio.ch' range='0.0.0' optional='true' greedy='false'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='io.netty.codec' version='4.0.19.Final'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: io.netty.codec&#xA;Bundle-Version: 4.0.19.Final&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='io.netty.handler' version='4.0.19.Final' singleton='false'>
+      <update id='io.netty.handler' range='[0.0.0,4.0.19.Final)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Netty/Handler'/>
+        <property name='org.eclipse.equinox.p2.description' value='Netty is an asynchronous event-driven network application framework for     rapid development of maintainable high performance protocol servers and    clients.'/>
+        <property name='org.eclipse.equinox.p2.provider' value='The Netty Project'/>
+        <property name='org.eclipse.equinox.p2.doc.url' value='http://netty.io/'/>
+      </properties>
+      <provides size='8'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='io.netty.handler' version='4.0.19.Final'/>
+        <provided namespace='osgi.bundle' name='io.netty.handler' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.logging' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.ssl' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.stream' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.timeout' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.handler.traffic' version='4.0.19.Final'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='9'>
+        <required namespace='java.package' name='io.netty.buffer' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.channel' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.handler.codec' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.concurrent' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.internal' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.internal.logging' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='javax.net.ssl' range='0.0.0'/>
+        <required namespace='java.package' name='sun.nio.ch' range='0.0.0' optional='true' greedy='false'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='io.netty.handler' version='4.0.19.Final'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: io.netty.handler&#xA;Bundle-Version: 4.0.19.Final&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='io.netty.common' version='4.0.19.Final' singleton='false'>
+      <update id='io.netty.common' range='[0.0.0,4.0.19.Final)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Netty/Common'/>
+        <property name='org.eclipse.equinox.p2.description' value='Netty is an asynchronous event-driven network application framework for     rapid development of maintainable high performance protocol servers and    clients.'/>
+        <property name='org.eclipse.equinox.p2.provider' value='The Netty Project'/>
+        <property name='org.eclipse.equinox.p2.doc.url' value='http://netty.io/'/>
+      </properties>
+      <provides size='8'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='io.netty.common' version='4.0.19.Final'/>
+        <provided namespace='osgi.bundle' name='io.netty.common' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.util' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.util.concurrent' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.util.internal' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.util.internal.chmv8' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.util.internal.logging' version='4.0.19.Final'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='7'>
+        <required namespace='java.package' name='sun.misc' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='java.package' name='sun.nio.ch' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='java.package' name='javassist' range='[3.18.0,4.0.0)' optional='true' greedy='false'/>
+        <required namespace='java.package' name='org.apache.commons.logging' range='[1.1.0,2.0.0)' optional='true' greedy='false'/>
+        <required namespace='java.package' name='org.apache.log4j' range='[1.2.0,2.0.0)' optional='true' greedy='false'/>
+        <required namespace='java.package' name='org.slf4j' range='[1.7.0,2.0.0)' optional='true' greedy='false'/>
+        <required namespace='java.package' name='org.slf4j.helpers' range='[1.7.0,2.0.0)' optional='true' greedy='false'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='io.netty.common' version='4.0.19.Final'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: io.netty.common&#xA;Bundle-Version: 4.0.19.Final&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='io.netty.buffer' version='4.0.19.Final' singleton='false'>
+      <update id='io.netty.buffer' range='[0.0.0,4.0.19.Final)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Netty/Buffer'/>
+        <property name='org.eclipse.equinox.p2.description' value='Netty is an asynchronous event-driven network application framework for     rapid development of maintainable high performance protocol servers and    clients.'/>
+        <property name='org.eclipse.equinox.p2.provider' value='The Netty Project'/>
+        <property name='org.eclipse.equinox.p2.doc.url' value='http://netty.io/'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='io.netty.buffer' version='4.0.19.Final'/>
+        <provided namespace='osgi.bundle' name='io.netty.buffer' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.buffer' version='4.0.19.Final'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='5'>
+        <required namespace='java.package' name='io.netty.util' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.concurrent' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.internal' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.internal.logging' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='sun.nio.ch' range='0.0.0' optional='true' greedy='false'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='io.netty.buffer' version='4.0.19.Final'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: io.netty.buffer&#xA;Bundle-Version: 4.0.19.Final&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='io.netty.transport' version='4.0.19.Final' singleton='false'>
+      <update id='io.netty.transport' range='[0.0.0,4.0.19.Final)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Netty/Transport'/>
+        <property name='org.eclipse.equinox.p2.description' value='Netty is an asynchronous event-driven network application framework for     rapid development of maintainable high performance protocol servers and    clients.'/>
+        <property name='org.eclipse.equinox.p2.provider' value='The Netty Project'/>
+        <property name='org.eclipse.equinox.p2.doc.url' value='http://netty.io/'/>
+      </properties>
+      <provides size='13'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='io.netty.transport' version='4.0.19.Final'/>
+        <provided namespace='osgi.bundle' name='io.netty.transport' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.bootstrap' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.channel' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.channel.embedded' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.channel.group' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.channel.local' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.channel.nio' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.channel.oio' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.channel.socket' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.channel.socket.nio' version='4.0.19.Final'/>
+        <provided namespace='java.package' name='io.netty.channel.socket.oio' version='4.0.19.Final'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='6'>
+        <required namespace='java.package' name='io.netty.buffer' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.concurrent' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.internal' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='io.netty.util.internal.logging' range='[4.0.0,5.0.0)'/>
+        <required namespace='java.package' name='sun.nio.ch' range='0.0.0' optional='true' greedy='false'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='io.netty.transport' version='4.0.19.Final'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: io.netty.transport&#xA;Bundle-Version: 4.0.19.Final&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+  </units>
+</repository>

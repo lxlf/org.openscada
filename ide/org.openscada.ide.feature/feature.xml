@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.openscada.ide"
+      label="%featureName"
+      version="1.4.0.qualifier"
+      provider-name="%providerName"
+      license-feature="org.eclipse.scada.license"
+      license-feature-version="0.1.0.qualifier">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <includes
+         id="org.openscada.configuration.snmp"
+         version="0.0.0"/>
+
+   <includes
+         id="org.openscada.configuration.opc"
+         version="0.0.0"/>
+
+   <includes
+         id="org.openscada.configuration.iec60870"
+         version="0.0.0"/>
+
+   <requires>
+      <import feature="org.eclipse.scada.license" version="0.1.0.qualifier"/>
+      <import feature="org.eclipse.scada.ide" version="0.3.0.qualifier" match="compatible"/>
+      <import feature="org.eclipse.scada.configuration" version="0.3.0.qualifier" match="compatible"/>
+   </requires>
+
+   <plugin
+         id="org.openscada.configuration.opcxml"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.openscada.configuration.opcxml.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.openscada.configuration.opcxml.lib"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.openscada.configuration.lib"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

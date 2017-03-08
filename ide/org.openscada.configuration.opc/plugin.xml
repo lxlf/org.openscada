@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated opc -->
+      <package
+            uri="http://openscada.org/Configuration/OPC"
+            class="org.openscada.configuration.opc.OpcPackage"
+            genModel="model/opc.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated opc -->
+      <parser
+            type="opc"
+            class="org.openscada.configuration.opc.util.OpcResourceFactoryImpl"/>
+   </extension>
+   <extension
+         point="org.eclipse.scada.configuration.infrastructure.lib.driver">
+      <driverFactory
+            factoryClass="org.openscada.configuration.opc.DriverFactoryImpl"
+            typeId="org.openscada.da.server.opc">
+      </driverFactory>
+   </extension>
+   <extension
+         point="org.eclipse.scada.configuration.world.lib.generator">
+      <nodeElementProcessor
+            factoryClass="org.openscada.configuration.opc.NodeElementProcessorFactoryImpl"
+            forClass="org.openscada.configuration.opc.OpcDriver">
+      </nodeElementProcessor>
+   </extension>
+</plugin>

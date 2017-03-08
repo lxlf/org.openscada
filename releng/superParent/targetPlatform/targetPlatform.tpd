@@ -1,0 +1,38 @@
+target "openSCADA Target Platform (Development)"
+
+include "base.tpd"
+
+with source, allEnvironments
+
+location "https://ftp-stud.hs-esslingen.de/Mirrors/eclipse/eclipsescada/updates/release/0.3" {
+	org.eclipse.scada.external.sdk.feature.group
+	org.eclipse.scada.utils.sdk.feature.group
+	org.eclipse.scada.protocols.sdk.feature.group
+	org.eclipse.scada.base.sdk.feature.group
+	org.eclipse.scada.core.sdk.feature.group
+	org.eclipse.scada.chart.sdk.feature.group
+	org.eclipse.scada.hmi.sdk.feature.group
+	org.eclipse.scada.ide.feature.group
+	org.eclipse.scada.configuration.sdk.feature.group
+}
+
+location "https://ftp-stud.hs-esslingen.de/Mirrors/eclipse/tools/orbit/downloads/drops/R20160221192158/repository/" {
+	org.slf4j.log4j
+	org.slf4j.ext
+	javax.transaction
+	osgi.enterprise
+	org.apache.commons.beanutils
+	org.apache.commons.collections
+	org.apache.commons.compress
+	com.google.gson
+	com.google.guava
+	com.jcraft.jzlib
+	org.apache.mina.core
+	org.apache.mina.filter.compression
+}
+
+location "http://hstaudacher.github.io/osgi-jax-rs-connector" {
+	com.eclipsesource.jaxrs.publisher [4.1.0,4.2.0)
+	com.eclipsesource.jaxrs.provider.gson [2.0.0,2.1.0)
+	com.eclipsesource.jaxrs.jersey-all [2.10.1,2.11.0)
+}

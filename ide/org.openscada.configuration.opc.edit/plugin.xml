@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated opc -->
+      <factory
+            uri="http://openscada.org/Configuration/OPC"
+            class="org.openscada.configuration.opc.provider.OpcItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated opc -->
+      <extender
+            uri="http://eclipse.org/SCADA/Configuration/Infrastructure"
+            class="org.openscada.configuration.opc.provider.OpcItemProviderAdapterFactory$InfrastructureChildCreationExtender"/>
+      <extender
+            uri="http://eclipse.org/SCADA/Configuration/World"
+            class="org.openscada.configuration.opc.provider.OpcItemProviderAdapterFactory$WorldChildCreationExtender"/>
+   </extension>
+
+</plugin>

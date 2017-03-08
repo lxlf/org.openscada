@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<relativePath>../../releng/superParent/pom.xml</relativePath>
+		<groupId>org.openscada</groupId>
+		<artifactId>superParent</artifactId>
+		<version>1.4.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>org.openscada.atlantis</groupId>
+	<artifactId>parent</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>../org.openscada.atlantis.feature</module>
+		<module>../org.openscada.atlantis.sdk.feature</module>
+
+		<module>../org.openscada.da.server.opc</module>
+		<module>../org.openscada.da.server.opc.edit</module>
+		
+		<module>../org.openscada.da.server.opc.xmlda</module>
+		
+		<module>../org.openscada.da.server.snmp</module>
+		<module>../org.openscada.da.server.snmp.edit</module>
+		
+		<module>../org.openscada.protocol.iec60870.feature</module>
+		
+		<module>../org.openscada.protocol.iec60870</module>
+		<module>../org.openscada.protocol.iec60870.client</module>
+		<module>../org.openscada.protocol.iec60870.client.data</module>
+		<module>../org.openscada.protocol.iec60870.server</module>
+		<module>../org.openscada.protocol.iec60870.server.data</module>
+		
+		<module>../org.openscada.da.server.common</module>
+		
+		<module>../org.openscada.core.common.iec60870</module>
+		<module>../org.openscada.da.server.exporter.iec60870</module>
+		<module>../org.openscada.da.server.iec60870</module>
+		
+		<!-- testing -->
+		
+		<module>../org.openscada.protocol.iec60870.server.data.tests</module>
+		<module>../org.openscada.protocol.iec60870.tests</module>
+	</modules>
+
+</project>

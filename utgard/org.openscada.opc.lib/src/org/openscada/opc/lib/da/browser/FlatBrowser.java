@@ -1,0 +1,69 @@
+/*
+ * This file is part of the OpenSCADA project
+ * Copyright (C) 2006-2010 TH4 SYSTEMS GmbH (http://th4-systems.com)
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
+
+package org.openscada.opc.lib.da.browser;
+
+import java.net.UnknownHostException;
+import java.util.Collection;
+import java.util.EnumSet;
+
+import org.jinterop.dcom.common.JIException;
+import org.jinterop.dcom.core.JIVariant;
+import org.openscada.opc.dcom.da.OPCBROWSETYPE;
+import org.openscada.opc.dcom.da.impl.OPCBrowseServerAddressSpace;
+
+/**
+ * Browse through the flat server namespace 
+ * @author Jens Reimann
+ *
+ */
+public class FlatBrowser extends BaseBrowser
+{
+    public FlatBrowser ( final OPCBrowseServerAddressSpace browser )
+    {
+        super ( browser );
+    }
+
+    public FlatBrowser ( final OPCBrowseServerAddressSpace browser, final int batchSize )
+    {
+        super ( browser, batchSize );
+    }
+
+    /**
+     * Perform a flat browse operation
+     * @param filterCriteria The filter criteria. Use an empty string if you don't need one.
+     * @param accessMask The access mask. An empty set will search for all.
+     * @param variantType The variant type. Must be one of the <code>VT_</code> constants of {@link JIVariant}. Use {@link JIVariant#VT_EMPTY} if you want to browse for all.
+     * @return The list of entries
+     * @throws IllegalArgumentException
+     * @throws UnknownHostException
+     * @throws JIException
+     */
+    public Collection<String> browse ( final String filterCriteria, final EnumSet<Access> accessMask, final int variantType ) throws IllegalArgumentException, UnknownHostException, JIException
+    {
+        return browse ( OPCBROWSETYPE.OPC_FLAT, filterCriteria, accessMask, variantType );
+    }
+
+    public Collection<String> browse ( final String filterCriteria ) throws IllegalArgumentException, UnknownHostException, JIException
+    {
+        return browse ( filterCriteria, EnumSet.noneOf ( Access.class ), JIVariant.VT_EMPTY );
+    }
+
+    public Collection<String> browse () throws IllegalArgumentException, UnknownHostException, JIException
+    {
+        return browse ( "", EnumSet.noneOf ( Access.class ), JIVariant.VT_EMPTY );
+    }
+
+    public Collection<String> browse ( final EnumSet<Access> accessMask ) throws IllegalArgumentException, UnknownHostException, JIException
+    {
+        return browse ( "", accessMask, JIVariant.VT_EMPTY );
+    }
+
+}

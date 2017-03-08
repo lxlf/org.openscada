@@ -1,0 +1,59 @@
+target "openSCADA Target Platform (Base Fragment)"
+
+with source, allEnvironments
+
+location "http://download.eclipse.org/eclipse/updates/4.5" {
+}
+
+location "http://download.eclipse.org/releases/mars" {
+	org.eclipse.equinox.sdk.feature.group
+	
+	org.eclipse.emf.validation.sdk.feature.group
+	org.eclipse.emf.sdk.feature.group
+	
+	org.eclipse.ecf.core.feature.group
+	org.eclipse.ocl.all.sdk.feature.group
+	
+	org.eclipse.platform.feature.group
+	org.eclipse.pde.feature.group
+	
+	org.eclipse.wst.web_ui.feature.feature.group
+	org.eclipse.acceleo.feature.group
+	
+	org.eclipse.gef.sdk.feature.group
+	org.eclipse.jdt.feature.group
+	
+	org.eclipse.ecf.core.feature.feature.group
+	org.eclipse.equinox.p2.core.feature.feature.group
+	org.eclipse.ecf.core.ssl.feature.feature.group
+	org.eclipse.ecf.filetransfer.ssl.feature.feature.group
+	org.eclipse.ecf.filetransfer.feature.feature.group
+	org.eclipse.ecf.filetransfer.httpclient4.feature.feature.group
+	org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.feature.group
+	org.eclipse.equinox.p2.rcp.feature.feature.group
+}
+
+location "http://download.eclipse.org/tools/orbit/downloads/drops/R20160221192158/repository/" {
+	ch.qos.logback.classic
+	ch.qos.logback.core
+	ch.qos.logback.slf4j
+	
+	org.apache.commons.dbcp[1.4.0,1.4.1)
+	org.apache.commons.dbcp.source[1.4.0,1.4.1)
+	
+	org.apache.commons.pool[1.6.0,1.6.1)
+	org.apache.commons.pool.source[1.6.0,1.6.1)
+}
+
+location "http://download.eclipse.org/paho/" {
+	org.eclipse.paho.client.mqttv3
+}
+
+location "http://thedrone.packagedrone.org/p2/os-externals" {
+	bcprov
+	io.netty.buffer
+	io.netty.codec
+	io.netty.common
+	io.netty.handler
+	io.netty.transport
+}

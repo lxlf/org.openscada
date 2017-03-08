@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.openscada.utgard"
+      label="%featureName"
+      version="1.4.0.qualifier"
+      provider-name="openSCADA.org">
+
+   <description>
+      openSCADA OPC Components
+   </description>
+
+   <copyright url="http://opensource.org/licenses/lgpl-3.0.html">
+      %copyright
+   </copyright>
+
+   <license url="http://opensource.org/licenses/lgpl-3.0.html">
+      %license
+   </license>
+
+   <requires>
+      <import plugin="org.openscada.jinterop.core"/>
+      <import plugin="org.openscada.jinterop.deps"/>
+      <import plugin="org.slf4j.api"/>
+      <import plugin="org.eclipse.scada.utils"/>
+      <import plugin="org.eclipse.osgi"/>
+   </requires>
+
+   <plugin
+         id="org.openscada.opc.dcom"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.openscada.opc.lib"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.openscada.opc.xmlda"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

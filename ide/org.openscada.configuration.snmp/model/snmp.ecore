@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="snmp" nsURI="http://openscada.org/Configuration/SNMP" nsPrefix="snmp">
+  <eClassifiers xsi:type="ecore:EClass" name="SnmpDriver" eSuperTypes="../../org.eclipse.scada.configuration.world/model/configuration.ecore#//CommonDriver">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" eType="ecore:EClass ../../org.openscada.da.server.snmp/model/configuration.ecore#//ConfigurationType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SnmpDevice" eSuperTypes="../../org.eclipse.scada.configuration.infrastructure/model/infrastructure.ecore#//Device">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="community" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//NMTOKEN"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
+        eType="#//SnmpVersion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mibs" lowerBound="1" upperBound="-1"
+        eType="#//MibsType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="protocol" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//NMTOKEN"
+        defaultValueLiteral="udp"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="161"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SnmpVersion">
+    <eLiterals name="V1" literal="V1"/>
+    <eLiterals name="V2" value="1" literal="V2"/>
+    <eLiterals name="V3" value="2" literal="V3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MibsType" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticMibName" eSuperTypes="#//MibsType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MibDir" eSuperTypes="#//MibsType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RecursiveMibDir" eSuperTypes="#//MibsType"/>
+</ecore:EPackage>

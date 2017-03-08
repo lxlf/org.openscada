@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.openscada.external_1.4.0.qualifier.jar" id="org.openscada.external" version="1.4.0.qualifier">
+      <category name="org.openscada.category"/>
+   </feature>
+   <feature url="features/org.openscada.jinterop_1.4.0.qualifier.jar" id="org.openscada.jinterop" version="1.4.0.qualifier">
+      <category name="org.openscada.category"/>
+   </feature>
+   <feature url="features/org.openscada.atlantis_1.4.0.qualifier.jar" id="org.openscada.atlantis" version="1.4.0.qualifier">
+      <category name="org.openscada.category"/>
+   </feature>
+   <feature url="features/org.openscada.utgard_1.4.0.qualifier.jar" id="org.openscada.utgard" version="1.4.0.qualifier">
+      <category name="org.openscada.category"/>
+   </feature>
+   <feature url="features/org.openscada.atlantis.sdk_1.4.0.qualifier.jar" id="org.openscada.atlantis.sdk" version="1.4.0.qualifier">
+      <category name="org.openscada.sdk.category"/>
+   </feature>
+   <feature url="features/org.openscada.external.sdk_1.4.0.qualifier.jar" id="org.openscada.external.sdk" version="1.4.0.qualifier">
+      <category name="org.openscada.sdk.category"/>
+   </feature>
+   <feature url="features/org.openscada.jinterop.sdk_1.4.0.qualifier.jar" id="org.openscada.jinterop.sdk" version="1.4.0.qualifier">
+      <category name="org.openscada.sdk.category"/>
+   </feature>
+   <feature url="features/org.openscada.utgard.sdk_1.4.0.qualifier.jar" id="org.openscada.utgard.sdk" version="1.4.0.qualifier">
+      <category name="org.openscada.sdk.category"/>
+   </feature>
+   <feature url="features/org.openscada.configuration.opc_1.4.0.qualifier.jar" id="org.openscada.configuration.opc" version="1.4.0.qualifier">
+      <category name="org.openscada.category"/>
+   </feature>
+   <feature url="features/org.openscada.configuration.snmp_1.4.0.qualifier.jar" id="org.openscada.configuration.snmp" version="1.4.0.qualifier">
+      <category name="org.openscada.category"/>
+   </feature>
+   <feature url="features/org.openscada.ide_1.4.0.qualifier.jar" id="org.openscada.ide" version="1.4.0.qualifier">
+      <category name="org.openscada.category"/>
+   </feature>
+   <feature url="features/org.openscada.ide.sdk_1.4.0.qualifier.jar" id="org.openscada.ide.sdk" version="1.4.0.qualifier">
+      <category name="org.openscada.sdk.category"/>
+   </feature>
+   <category-def name="org.openscada.category" label="openSCADA">
+      <description>
+         All binaries.
+      </description>
+   </category-def>
+   <category-def name="org.openscada.sdk.category" label="openSCADA SDK">
+      <description>
+         Binaries and sources
+      </description>
+   </category-def>
+</site>

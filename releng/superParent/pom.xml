@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.openscada</groupId>
+	<artifactId>superParent</artifactId>
+	<version>1.4.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<organization>
+		<name>openSCADA</name>
+		<url>http://openscada.org</url>
+	</organization>
+
+	<properties>
+		<openscada.release>1.4</openscada.release>
+		<openscada.releaseType>nightly</openscada.releaseType>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+
+		<tycho.scmUrl>scm:git:git@github.com:ibh-systems/org.openscada.git</tycho.scmUrl>
+		<tycho-version>0.22.0</tycho-version>
+		<tycho-extras-version>0.22.0</tycho-extras-version>
+	</properties>
+
+	<modules>
+		<module>targetPlatform</module>
+		<module>../../external/org.openscada.external-parent</module>
+		<module>../../jinterop/org.openscada.jinterop-parent</module>
+		<module>../../utgard/org.openscada.utgard-parent</module>
+		<module>../../core/org.openscada.atlantis-parent</module>
+		<module>../../ide/org.openscada.ide-parent</module>
+	</modules>
+
+	<build>
+
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.6</version>
+			</extension>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh-external</artifactId>
+				<version>2.6</version>
+			</extension>
+		</extensions>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.8</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<target>
+						<artifact>
+							<groupId>org.openscada</groupId>
+							<artifactId>targetPlatform</artifactId>
+							<version>${project.parent.version}</version>
+						</artifact>
+					</target>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
+			<!-- build qualifier -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-buildtimestamp-jgit</artifactId>
+						<version>${tycho-extras-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-sourceref-jgit</artifactId>
+						<version>${tycho-extras-version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<sourceReferences>
+						<generate>true</generate>
+					</sourceReferences>
+				</configuration>
+			</plugin>
+
+
+			<!-- source bundles -->
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+	<profiles>
+		<profile>
+			<id>milestone</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<openscada.releaseType>milestone</openscada.releaseType>
+			</properties>
+
+			<distributionManagement>
+				<downloadUrl>http://thedrone.packagedrone.org/maven/os-milestones</downloadUrl>
+				<repository>
+					<id>openscada-drone</id>
+					<name>openSCADA Maven Repository</name>
+					<url>http://thedrone.packagedrone.org/maven/os-milestones</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+
+		<profile>
+			<id>staging</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<openscada.releaseType>release</openscada.releaseType>
+				<repo.upload>true</repo.upload>
+			</properties>
+
+			<distributionManagement>
+				<downloadUrl>http://thedrone.packagedrone.org/maven/os-staging</downloadUrl>
+				<repository>
+					<id>openscada-drone</id>
+					<name>openSCADA Maven Repository</name>
+					<url>http://thedrone.packagedrone.org/maven/os-staging</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+
+		<profile>
+			<id>release</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<openscada.releaseType>release</openscada.releaseType>
+				<repo.upload>true</repo.upload>
+			</properties>
+
+			<distributionManagement>
+				<downloadUrl>http://thedrone.packagedrone.org/maven/openscada-1.4</downloadUrl>
+				<repository>
+					<id>openscada-drone</id>
+					<name>openSCADA Maven Repository</name>
+					<url>http://thedrone.packagedrone.org/maven/openscada-1.4</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+
+		<profile>
+			<id>integration</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<properties>
+				<openscada.releaseType>integration</openscada.releaseType>
+				<repo.upload>true</repo.upload>
+			</properties>
+
+			<distributionManagement>
+				<downloadUrl>http://thedrone.packagedrone.org/maven/os-int</downloadUrl>
+				<repository>
+					<id>openscada-drone</id>
+					<name>openSCADA Maven Repository</name>
+					<url>http://thedrone.packagedrone.org/maven/os-int</url>
+				</repository>
+			</distributionManagement>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-deploy-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

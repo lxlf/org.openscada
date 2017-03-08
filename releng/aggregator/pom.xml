@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.openscada</groupId>
+		<artifactId>superParent</artifactId>
+		<version>1.4.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>org.openscada</groupId>
+	<artifactId>aggregator</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>../org.openscada-p2</module>
+		<module>../../external/org.openscada.external-parent</module>
+		<module>../../jinterop/org.openscada.jinterop-parent</module>
+		<module>../../utgard/org.openscada.utgard-parent</module>
+		<module>../../core/org.openscada.atlantis-parent</module>
+		<module>../../ide/org.openscada.ide-parent</module>
+		<module>deb</module>
+		<module>rpm</module>
+		<module>deploy</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.8</version>
+				</plugin>
+				<plugin>
+					<artifactId>jdeb</artifactId>
+					<groupId>org.vafer</groupId>
+					<version>1.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>wagon-maven-plugin</artifactId>
+					<version>1.0-beta-5</version>
+				</plugin>
+				<plugin>
+					<groupId>de.dentrassi.build</groupId>
+					<artifactId>apt-repo</artifactId>
+					<version>0.0.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>rpm-maven-plugin</artifactId>
+					<version>2.1-alpha-4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.7</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.3.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>aggregate</goal>
+							<goal>aggregate-jar</goal>
+						</goals>
+						<phase>verify</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<doctitle>openSCADA ${project.version}</doctitle>
+					<excludePackageNames>ndr:jcifs:rpc:org.apache:org.jinterop:org.odftoolkit:org.snmp4j:org.openscada.configuration</excludePackageNames>
+					<finalName>org.openscada</finalName>
+					<additionalparam>-Xdoclint:none</additionalparam>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
