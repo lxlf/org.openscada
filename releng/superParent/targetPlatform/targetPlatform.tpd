@@ -4,7 +4,7 @@ include "base.tpd"
 
 with source, allEnvironments
 
-location "https://ftp-stud.hs-esslingen.de/Mirrors/eclipse/eclipsescada/updates/release/0.3" {
+location "http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/eclipsescada/updates/release/0.3" {
 	org.eclipse.scada.external.sdk.feature.group
 	org.eclipse.scada.utils.sdk.feature.group
 	org.eclipse.scada.protocols.sdk.feature.group
@@ -16,7 +16,7 @@ location "https://ftp-stud.hs-esslingen.de/Mirrors/eclipse/eclipsescada/updates/
 	org.eclipse.scada.configuration.sdk.feature.group
 }
 
-location "https://ftp-stud.hs-esslingen.de/Mirrors/eclipse/tools/orbit/downloads/drops/R20160221192158/repository/" {
+location "http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/tools/orbit/downloads/drops/R20160221192158/repository/" {
 	org.slf4j.log4j
 	org.slf4j.ext
 	javax.transaction

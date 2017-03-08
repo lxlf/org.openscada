@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="openSCADA Target Platform (Development)" sequenceNumber="1488960734">
+<target name="openSCADA Target Platform (Development)" sequenceNumber="1488975946">
   <locations>
     <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository location="http://download.eclipse.org/eclipse/updates/4.5"/>
+      <repository location="http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/eclipse/updates/4.5"/>
     </location>
     <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.equinox.sdk.feature.group" version="3.11.2.v20160202-2102"/>
@@ -26,21 +26,11 @@
       <unit id="org.eclipse.ecf.filetransfer.httpclient4.feature.feature.group" version="3.12.0.v20151130-0157"/>
       <unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.feature.group" version="1.1.0.v20151130-0157"/>
       <unit id="org.eclipse.equinox.p2.rcp.feature.feature.group" version="1.2.101.v20150826-1318"/>
-      <repository location="http://download.eclipse.org/releases/mars"/>
-    </location>
-    <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="ch.qos.logback.classic" version="1.0.7.v20121108-1250"/>
-      <unit id="ch.qos.logback.core" version="1.0.7.v20121108-1250"/>
-      <unit id="ch.qos.logback.slf4j" version="1.0.7.v201505121915"/>
-      <unit id="org.apache.commons.dbcp" version="1.4.0.v201204271417"/>
-      <unit id="org.apache.commons.dbcp.source" version="1.4.0.v201204271417"/>
-      <unit id="org.apache.commons.pool" version="1.6.0.v201204271246"/>
-      <unit id="org.apache.commons.pool.source" version="1.6.0.v201204271246"/>
-      <repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160221192158/repository/"/>
+      <repository location="http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/releases/mars"/>
     </location>
     <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.paho.client.mqttv3" version="1.0.2"/>
-      <repository location="http://download.eclipse.org/paho/"/>
+      <repository location="http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/paho/"/>
     </location>
     <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="bcprov" version="1.50.0"/>
@@ -61,7 +51,7 @@
       <unit id="org.eclipse.scada.hmi.sdk.feature.group" version="0.3.0.v20160226-1536"/>
       <unit id="org.eclipse.scada.ide.feature.group" version="0.3.0.v20160229-1037"/>
       <unit id="org.eclipse.scada.configuration.sdk.feature.group" version="0.3.0.v20160404-1222"/>
-      <repository location="https://ftp-stud.hs-esslingen.de/Mirrors/eclipse/eclipsescada/updates/release/0.3"/>
+      <repository location="http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/eclipsescada/updates/release/0.3"/>
     </location>
     <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.slf4j.log4j" version="1.7.2.v20130115-1340"/>
@@ -76,7 +66,14 @@
       <unit id="com.jcraft.jzlib" version="1.1.1.v201205102305"/>
       <unit id="org.apache.mina.core" version="2.0.7.v201401071602"/>
       <unit id="org.apache.mina.filter.compression" version="2.0.7.v201401141305"/>
-      <repository location="https://ftp-stud.hs-esslingen.de/Mirrors/eclipse/tools/orbit/downloads/drops/R20160221192158/repository/"/>
+      <unit id="ch.qos.logback.classic" version="1.0.7.v20121108-1250"/>
+      <unit id="ch.qos.logback.core" version="1.0.7.v20121108-1250"/>
+      <unit id="ch.qos.logback.slf4j" version="1.0.7.v201505121915"/>
+      <unit id="org.apache.commons.dbcp" version="1.4.0.v201204271417"/>
+      <unit id="org.apache.commons.dbcp.source" version="1.4.0.v201204271417"/>
+      <unit id="org.apache.commons.pool" version="1.6.0.v201204271246"/>
+      <unit id="org.apache.commons.pool.source" version="1.6.0.v201204271246"/>
+      <repository location="http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/tools/orbit/downloads/drops/R20160221192158/repository/"/>
     </location>
     <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="com.eclipsesource.jaxrs.publisher" version="4.1.0.201407131319"/>

@@ -2,10 +2,10 @@ target "openSCADA Target Platform (Base Fragment)"
 
 with source, allEnvironments
 
-location "http://download.eclipse.org/eclipse/updates/4.5" {
+location "http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/eclipse/updates/4.5" {
 }
 
-location "http://download.eclipse.org/releases/mars" {
+location "http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/releases/mars" {
 	org.eclipse.equinox.sdk.feature.group
 	
 	org.eclipse.emf.validation.sdk.feature.group
@@ -33,7 +33,7 @@ location "http://download.eclipse.org/releases/mars" {
 	org.eclipse.equinox.p2.rcp.feature.feature.group
 }
 
-location "http://download.eclipse.org/tools/orbit/downloads/drops/R20160221192158/repository/" {
+location "http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/tools/orbit/downloads/drops/R20160221192158/repository/" {
 	ch.qos.logback.classic
 	ch.qos.logback.core
 	ch.qos.logback.slf4j
@@ -45,7 +45,7 @@ location "http://download.eclipse.org/tools/orbit/downloads/drops/R2016022119215
 	org.apache.commons.pool.source[1.6.0,1.6.1)
 }
 
-location "http://download.eclipse.org/paho/" {
+location "http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/paho/" {
 	org.eclipse.paho.client.mqttv3
 }
 
