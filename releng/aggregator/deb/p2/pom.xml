@@ -33,7 +33,7 @@
 						<id>copy-p2</id>
 						<phase>compile</phase>
 						<goals>
-							<goal>copy</goal>
+							<goal>unpack</goal>
 						</goals>
 						<configuration>
 							<artifactItems>
@@ -58,8 +58,8 @@
 					<snapshotExpand>true</snapshotExpand>
 					<dataSet>
 						<data>
-							<src>${project.build.directory}/data/org.openscada.zip</src>
-							<type>archive</type>
+							<src>${project.build.directory}/data</src>
+							<type>directory</type>
 							<mapper>
 								<type>perm</type>
 								<prefix>/usr/share/eclipsescada/p2/org.openscada</prefix>
