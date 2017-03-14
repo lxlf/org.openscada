@@ -47,16 +47,16 @@ public enum CommandMessage
                 return new SingleCommandTime ( header, objectAddress, new CommandValue<Boolean> ( value.asBoolean ( false ), timestamp ) );
             case C_SE_NA_1:
                 return new SetPointCommandNormalizedValue ( header, objectAddress, value.asDouble ( 0.0 ) );
-            case C_SE_NB_1:
+            case C_SE_TA_1:
                 return new SetPointCommandNormalizedValueTime ( header, objectAddress, new CommandValue<Double> ( value.asDouble ( 0.0 ), timestamp ) );
+            case C_SE_NB_1:
+                return new SetPointCommandScaledValue ( header, objectAddress, value.asInteger ( 0 ).shortValue () );
+            case C_SE_TB_1:
+                return new SetPointCommandScaledValueTime ( header, objectAddress, new CommandValue<Short> ( value.asInteger ( 0 ).shortValue (), timestamp ) );
             case C_SE_NC_1:
                 return new SetPointCommandShortFloatingPoint ( header, objectAddress, value.asDouble ( 0.0 ).floatValue () );
-            case C_SE_TA_1:
-                return new SetPointCommandShortFloatingPointTime ( header, objectAddress, new CommandValue<Float> ( value.asDouble ( 0.0 ).floatValue (), timestamp ) );
-            case C_SE_TB_1:
-                return new SetPointCommandScaledValue ( header, objectAddress, value.asInteger ( 0 ).shortValue () );
             case C_SE_TC_1:
-                return new SetPointCommandScaledValueTime ( header, objectAddress, new CommandValue<Short> ( value.asInteger ( 0 ).shortValue (), timestamp ) );
+                return new SetPointCommandShortFloatingPointTime ( header, objectAddress, new CommandValue<Float> ( value.asDouble ( 0.0 ).floatValue (), timestamp ) );
         }
         throw new IllegalArgumentException ( String.format ( "could not create message for %s-%s value %s", header, objectAddress, value ) );
     }
