@@ -15,6 +15,9 @@ import io.netty.channel.ChannelHandlerContext;
 import org.openscada.protocol.iec60870.asdu.message.DoublePointInformationSequence;
 import org.openscada.protocol.iec60870.asdu.message.DoublePointInformationSingle;
 import org.openscada.protocol.iec60870.asdu.message.DoublePointInformationTimeSingle;
+import org.openscada.protocol.iec60870.asdu.message.MeasuredValueNormalizedSequence;
+import org.openscada.protocol.iec60870.asdu.message.MeasuredValueNormalizedSingle;
+import org.openscada.protocol.iec60870.asdu.message.MeasuredValueNormalizedTimeSingle;
 import org.openscada.protocol.iec60870.asdu.message.MeasuredValueScaledSequence;
 import org.openscada.protocol.iec60870.asdu.message.MeasuredValueScaledSingle;
 import org.openscada.protocol.iec60870.asdu.message.MeasuredValueScaledTimeSingle;
@@ -56,5 +59,11 @@ public interface DataHandler
     public void process ( MeasuredValueScaledSequence msg );
 
     public void process ( MeasuredValueScaledSingle msg );
+
+    public void process ( MeasuredValueNormalizedTimeSingle msg );
+
+    public void process ( MeasuredValueNormalizedSequence msg );
+
+    public void process ( MeasuredValueNormalizedSingle msg );
 
 }

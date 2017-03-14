@@ -15,6 +15,9 @@ import java.util.concurrent.Executor;
 import org.openscada.protocol.iec60870.asdu.message.DoublePointInformationSequence;
 import org.openscada.protocol.iec60870.asdu.message.DoublePointInformationSingle;
 import org.openscada.protocol.iec60870.asdu.message.DoublePointInformationTimeSingle;
+import org.openscada.protocol.iec60870.asdu.message.MeasuredValueNormalizedSequence;
+import org.openscada.protocol.iec60870.asdu.message.MeasuredValueNormalizedSingle;
+import org.openscada.protocol.iec60870.asdu.message.MeasuredValueNormalizedTimeSingle;
 import org.openscada.protocol.iec60870.asdu.message.MeasuredValueScaledSequence;
 import org.openscada.protocol.iec60870.asdu.message.MeasuredValueScaledSingle;
 import org.openscada.protocol.iec60870.asdu.message.MeasuredValueScaledTimeSingle;
@@ -208,4 +211,34 @@ public class DataProcessor implements DataHandler
         }
     }
 
+
+    @Override
+    public void process ( final MeasuredValueNormalizedTimeSingle msg )
+    {
+        for ( final InformationEntry<Double> entry : msg.getEntries () )
+        {
+            fireEntry ( msg.getHeader ().getAsduAddress (), entry.getAddress (), entry.getValue () );
+        }
+    }
+
+    @Override
+    public void process ( final MeasuredValueNormalizedSingle msg )
+    {
+        for ( final InformationEntry<Double> entry : msg.getEntries () )
+        {
+            fireEntry ( msg.getHeader ().getAsduAddress (), entry.getAddress (), entry.getValue () );
+        }
+    }
+
+    @Override
+    public void process ( final MeasuredValueNormalizedSequence msg )
+    {
+        int i = msg.getStartAddress ().getAddress ();
+
+        for ( final Value<Double> value : msg.getValues () )
+        {
+            fireEntry ( msg.getHeader ().getAsduAddress (), InformationObjectAddress.valueOf ( i ), value );
+            i++;
+        }
+    }
 }
