@@ -91,7 +91,7 @@ public class CAConfigurationFactory implements ConfigurationFactory, org.eclipse
             try
             {
                 CommandMessage cm = CommandMessage.valueOf ( entry.getValue () );
-                itemTypes.put ( entry.getValue (), cm );
+                itemTypes.put ( entry.getKey (), cm );
             }
             catch ( Exception e )
             {
