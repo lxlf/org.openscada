@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.openscada.protocol.iec60870.server.data;
 
-import io.netty.channel.ChannelHandlerContext;
-
 import java.lang.reflect.InvocationTargetException;
 
 import org.openscada.protocol.iec60870.apci.MessageChannel;
@@ -19,9 +17,7 @@ import org.openscada.protocol.iec60870.asdu.ASDUHeader;
 import org.openscada.protocol.iec60870.asdu.message.DataTransmissionMessage;
 import org.openscada.protocol.iec60870.asdu.message.InterrogationCommand;
 import org.openscada.protocol.iec60870.asdu.message.ReadCommand;
-import org.openscada.protocol.iec60870.asdu.message.SetPointCommandScaledValue;
-import org.openscada.protocol.iec60870.asdu.message.SetPointCommandShortFloatingPoint;
-import org.openscada.protocol.iec60870.asdu.message.SingleCommand;
+import org.openscada.protocol.iec60870.asdu.message.ValueCommandMessage;
 import org.openscada.protocol.iec60870.asdu.types.CauseOfTransmission;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.StandardCause;
@@ -34,6 +30,8 @@ import org.slf4j.LoggerFactory;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+
+import io.netty.channel.ChannelHandlerContext;
 
 public class DataModuleHandler extends AbstractModuleHandler
 {
@@ -117,17 +115,9 @@ public class DataModuleHandler extends AbstractModuleHandler
             {
                 handleInterrogationCommand ( ctx, (InterrogationCommand)msg );
             }
-            else if ( msg instanceof SingleCommand )
+            else if ( msg instanceof ValueCommandMessage )
             {
-                handleWriteCommand ( ctx, (SingleCommand)msg );
-            }
-            else if ( msg instanceof SetPointCommandShortFloatingPoint )
-            {
-                handleWriteValue ( ctx, (SetPointCommandShortFloatingPoint)msg );
-            }
-            else if ( msg instanceof SetPointCommandScaledValue )
-            {
-                handleWriteValue ( ctx, (SetPointCommandScaledValue)msg );
+                handleWriteValue ( ctx, (ValueCommandMessage)msg );
             }
             else
             {
@@ -142,22 +132,10 @@ public class DataModuleHandler extends AbstractModuleHandler
         }
     }
 
-    private void handleWriteCommand ( final ChannelHandlerContext ctx, final SingleCommand msg )
+    private void handleWriteValue ( final ChannelHandlerContext ctx, final ValueCommandMessage msg )
     {
-        final MirrorCommand mc = new DefaultMirrorCommand<SingleCommand> ( ctx, msg );
-        this.dataModel.writeCommand ( msg.getHeader (), msg.getInformationObjectAddress (), msg.getState (), msg.getType (), mc, msg.isExecute () );
-    }
-
-    private void handleWriteValue ( final ChannelHandlerContext ctx, final SetPointCommandShortFloatingPoint msg )
-    {
-        final MirrorCommand mc = new DefaultMirrorCommand<SetPointCommandShortFloatingPoint> ( ctx, msg );
+        final MirrorCommand mc = new DefaultMirrorCommand<ValueCommandMessage> ( ctx, msg );
         this.dataModel.writeValue ( msg.getHeader (), msg.getInformationObjectAddress (), msg.getValue (), msg.getType (), mc, msg.isExecute () );
-    }
-
-    private void handleWriteValue ( final ChannelHandlerContext ctx, final SetPointCommandScaledValue msg )
-    {
-        final MirrorCommand mc = new DefaultMirrorCommand<SetPointCommandScaledValue> ( ctx, msg );
-        this.dataModel.writeScaledValue ( msg.getHeader (), msg.getInformationObjectAddress (), msg.getValue (), msg.getType (), mc, msg.isExecute () );
     }
 
     private void stopDataTransmission ( final ChannelHandlerContext ctx )

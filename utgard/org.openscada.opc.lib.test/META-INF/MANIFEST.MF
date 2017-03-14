@@ -5,4 +5,4 @@ Bundle-SymbolicName: org.openscada.opc.lib.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: openSCADA.org
 Fragment-Host: org.openscada.opc.lib;bundle-version="1.0.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

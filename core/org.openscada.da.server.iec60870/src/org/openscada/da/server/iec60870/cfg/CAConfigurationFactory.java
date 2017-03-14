@@ -14,11 +14,13 @@ import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.scada.ca.ConfigurationAdministrator;
 import org.eclipse.scada.ca.ConfigurationDataHelper;
 import org.eclipse.scada.sec.UserInformation;
 import org.openscada.core.common.iec60870.Configurations;
+import org.openscada.da.server.iec60870.CommandMessage;
 import org.openscada.da.server.iec60870.ConnectionConfiguration;
 import org.openscada.protocol.iec60870.ProtocolOptions.Builder;
 import org.openscada.protocol.iec60870.client.data.DataModuleOptions;
@@ -83,7 +85,21 @@ public class CAConfigurationFactory implements ConfigurationFactory, org.eclipse
         final Builder builder = Configurations.parseProtocolOptions ( cfg.getPrefixedHelper ( "protocol." ) );
         final DataModuleOptions dataModuleOptions = parseDataModuleOptions ( cfg.getPrefixedHelper ( "dataModule." ) );
 
-        return new ConnectionConfiguration ( host, port, builder.build (), dataModuleOptions );
+        final Map<String, CommandMessage> itemTypes = new HashMap<> ();
+        for ( final Entry<String, String> entry : cfg.getPrefixed ( "itemType." ).entrySet () )
+        {
+            try
+            {
+                CommandMessage cm = CommandMessage.valueOf ( entry.getValue () );
+                itemTypes.put ( entry.getValue (), cm );
+            }
+            catch ( Exception e )
+            {
+                logger.warn ( "type {} (of key '{}') is not a valid IEC type; will be ignored", entry.getValue (), entry.getKey () );
+            }
+        }
+
+        return new ConnectionConfiguration ( host, port, builder.build (), dataModuleOptions, itemTypes );
     }
 
     private DataModuleOptions parseDataModuleOptions ( final ConfigurationDataHelper cfg )

@@ -2,20 +2,20 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.openscada.da.server.opc;singleton:=true
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.5.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.openscada.da.opc.configuration;version="1.2.0",
- org.openscada.da.opc.configuration.impl;version="1.2.0",
- org.openscada.da.opc.configuration.util;version="1.2.0",
- org.openscada.da.server.opc;version="1.2.0",
- org.openscada.da.server.opc.browser;version="1.2.0",
- org.openscada.da.server.opc.configuration;version="1.2.0",
- org.openscada.da.server.opc.connection;version="1.2.0",
- org.openscada.da.server.opc.connection.data;version="1.2.0",
- org.openscada.da.server.opc.job;version="1.2.0",
- org.openscada.da.server.opc.job.impl;version="1.2.0"
+Export-Package: org.openscada.da.opc.configuration;version="1.5.0",
+ org.openscada.da.opc.configuration.impl;version="1.5.0",
+ org.openscada.da.opc.configuration.util;version="1.5.0",
+ org.openscada.da.server.opc;version="1.5.0",
+ org.openscada.da.server.opc.browser;version="1.5.0",
+ org.openscada.da.server.opc.configuration;version="1.5.0",
+ org.openscada.da.server.opc.connection;version="1.5.0",
+ org.openscada.da.server.opc.connection.data;version="1.5.0",
+ org.openscada.da.server.opc.job;version="1.5.0",
+ org.openscada.da.server.opc.job.impl;version="1.5.0"
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.8.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.8.0";visibility:=reexport

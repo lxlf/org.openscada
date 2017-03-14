@@ -6,13 +6,13 @@
 	<parent>
 		<artifactId>parent</artifactId>
 		<groupId>org.openscada.ide</groupId>
-		<version>1.4.0-SNAPSHOT</version>
+		<version>1.5.0-SNAPSHOT</version>
 		<relativePath>../org.openscada.ide-parent</relativePath>
 	</parent>
 	<groupId>org.openscada.ide.features</groupId>
 	<artifactId>org.openscada.configuration.opc</artifactId>
 	<packaging>eclipse-feature</packaging>
-	<version>1.4.0-SNAPSHOT</version>
+	<version>1.5.0-SNAPSHOT</version>
 
 	<!-- source features -->
 

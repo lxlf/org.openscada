@@ -40,6 +40,7 @@ import org.eclipse.scada.utils.concurrent.NotifyFuture;
 import org.openscada.protocol.iec60870.asdu.ASDUHeader;
 import org.openscada.protocol.iec60870.asdu.types.ASDUAddress;
 import org.openscada.protocol.iec60870.asdu.types.CauseOfTransmission;
+import org.openscada.protocol.iec60870.asdu.types.CommandValue;
 import org.openscada.protocol.iec60870.asdu.types.InformationEntry;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.QualityInformation;
@@ -670,21 +671,9 @@ public class DataModelImpl extends AbstractBaseDataModel
     }
 
     @Override
-    public void writeCommand ( final ASDUHeader header, final InformationObjectAddress informationObjectAddress, final boolean state, final byte type, final MirrorCommand mirrorCommand, final boolean execute )
+    public void writeValue ( final ASDUHeader header, final InformationObjectAddress informationObjectAddress, final CommandValue<?> value, final byte type, final MirrorCommand mirrorCommand, final boolean execute )
     {
-        performWrite ( header, informationObjectAddress, Variant.valueOf ( state ), mirrorCommand, execute );
-    }
-
-    @Override
-    public void writeValue ( final ASDUHeader header, final InformationObjectAddress informationObjectAddress, final float value, final byte type, final MirrorCommand mirrorCommand, final boolean execute )
-    {
-        performWrite ( header, informationObjectAddress, Variant.valueOf ( value ), mirrorCommand, execute );
-    }
-
-    @Override
-    public void writeScaledValue ( final ASDUHeader header, final InformationObjectAddress informationObjectAddress, final short value, final byte type, final MirrorCommand mirrorCommand, final boolean execute )
-    {
-        performWrite ( header, informationObjectAddress, Variant.valueOf ( value ), mirrorCommand, execute );
+        performWrite ( header, informationObjectAddress, Variant.valueOf ( value.getValue () ), mirrorCommand, execute );
     }
 
     private void performWrite ( final ASDUHeader header, final InformationObjectAddress informationObjectAddress, final Variant value, final MirrorCommand mirrorCommand, final boolean execute )

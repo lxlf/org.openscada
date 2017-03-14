@@ -134,6 +134,8 @@ public class Connection
 
     private final DataModuleOptions dataModuleOptions;
 
+    private final Map<String, CommandMessage> itemTypes;
+
     public Connection ( final String id, final Hive hive, final Executor executor, final ConnectionConfiguration configuration )
     {
         this.hive = hive;
@@ -147,6 +149,7 @@ public class Connection
         final DataModule dataModule = new DataModule ( this.handler, this.dataModuleOptions );
 
         this.protocolOptions = configuration.getProtocolOptions ();
+        this.itemTypes = configuration.getItemTypes ();
 
         this.folder = new FolderCommon ();
         hive.getRootFolder ().add ( id, this.folder, null );
@@ -276,7 +279,7 @@ public class Connection
 
         final DataItemInformation di = new DataItemInformationBase ( id, EnumSet.of ( IODirection.INPUT, IODirection.OUTPUT ) );
 
-        final DataItemInputOutputChained item = new DataItemInputOutputChained ( di, this.executor) {
+        final DataItemInputOutputChained item = new DataItemInputOutputChained ( di, this.executor ) {
 
             @Override
             protected NotifyFuture<WriteResult> startWriteCalculatedValue ( final Variant value, final OperationParameters operationParameters )
@@ -331,32 +334,42 @@ public class Connection
         {
             csa = (byte)0;
         }
+        CommandMessage cm = this.itemTypes.get ( makeLocalId ( commonAddress, objectAddress ) );
 
         final ASDUHeader header = new ASDUHeader ( new CauseOfTransmission ( StandardCause.ACTIVATED, csa ), commonAddress );
 
-        try
+        if ( cm != null )
         {
-            switch ( value.getType () )
+            return cm.createMessage ( header, objectAddress, value, System.currentTimeMillis () );
+        }
+        else if ( value.isString () && value.asString ( "" ).startsWith ( "C_S" ) )
+        {
+            return CommandMessage.createMessage ( header, objectAddress, value.asString ( "" ) );
+        }
+        else
+        {
+            try
             {
-                case BOOLEAN:
-                    return new SingleCommand ( header, objectAddress, value.asBoolean () );
-
-                case STRING:
-                case DOUBLE:
-                    return new SetPointCommandShortFloatingPoint ( header, objectAddress, (float)value.asDouble () );
-
-                case INT32:
-                case INT64:
-                    return new SetPointCommandScaledValue ( header, objectAddress, (short)value.asInteger () );
-
-                default:
-                    return null;
+                switch ( value.getType () )
+                {
+                    case BOOLEAN:
+                        return new SingleCommand ( header, objectAddress, value.asBoolean () );
+                    case STRING:
+                    case DOUBLE:
+                        return new SetPointCommandShortFloatingPoint ( header, objectAddress, (float)value.asDouble () );
+                    case INT32:
+                    case INT64:
+                        return new SetPointCommandScaledValue ( header, objectAddress, (short)value.asInteger () );
+                    default:
+                        return null;
+                }
+            }
+            catch ( final NotConvertableException | NullValueException e )
+            {
+                // should never happen
             }
         }
-        catch ( final NotConvertableException | NullValueException e )
-        {
-            // should never happen
-        }
+
         return null;
     }
 

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Common Configuration
 Bundle-SymbolicName: org.openscada.configuration.lib
-Bundle-Version: 1.4.0.qualifier
+Bundle-Version: 1.5.0.qualifier
 Bundle-Vendor: IBH SYSTEMS GmbH
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.openscada.configuration.lib;version="1.4.0"

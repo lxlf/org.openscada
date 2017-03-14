@@ -10,6 +10,10 @@
  *******************************************************************************/
 package org.openscada.da.server.iec60870;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openscada.protocol.iec60870.ProtocolOptions;
 import org.openscada.protocol.iec60870.client.data.DataModuleOptions;
 
@@ -23,12 +27,15 @@ public class ConnectionConfiguration
 
     private final DataModuleOptions dataModuleOptions;
 
-    public ConnectionConfiguration ( final String host, final int port, final ProtocolOptions protocolOptions, final DataModuleOptions dataModuleOptions )
+    private final Map<String, CommandMessage> itemTypes;
+
+    public ConnectionConfiguration ( final String host, final int port, final ProtocolOptions protocolOptions, final DataModuleOptions dataModuleOptions, final Map<String, CommandMessage> itemTypes )
     {
         this.host = host;
         this.port = port;
         this.protocolOptions = protocolOptions;
         this.dataModuleOptions = dataModuleOptions;
+        this.itemTypes = new HashMap<> ( itemTypes );
     }
 
     public String getHost ()
@@ -55,5 +62,10 @@ public class ConnectionConfiguration
     public DataModuleOptions getDataModuleOptions ()
     {
         return this.dataModuleOptions;
+    }
+
+    public Map<String, CommandMessage> getItemTypes ()
+    {
+        return Collections.unmodifiableMap ( itemTypes );
     }
 }

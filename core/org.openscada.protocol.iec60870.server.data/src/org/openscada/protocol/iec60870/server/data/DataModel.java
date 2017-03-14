@@ -12,6 +12,7 @@ package org.openscada.protocol.iec60870.server.data;
 
 import org.openscada.protocol.iec60870.asdu.ASDUHeader;
 import org.openscada.protocol.iec60870.asdu.types.ASDUAddress;
+import org.openscada.protocol.iec60870.asdu.types.CommandValue;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.Value;
 import org.openscada.protocol.iec60870.io.MirrorCommand;
@@ -107,10 +108,6 @@ public interface DataModel
 
     public void dispose ();
 
-    public void writeCommand ( ASDUHeader header, InformationObjectAddress informationObjectAddress, boolean state, byte type, MirrorCommand mirrorCommand, boolean execute );
-
-    public void writeValue ( ASDUHeader header, InformationObjectAddress informationObjectAddress, float value, byte type, MirrorCommand mirrorCommand, boolean execute );
-
-    public void writeScaledValue ( ASDUHeader header, InformationObjectAddress informationObjectAddress, short value, byte type, MirrorCommand mirrorCommand, boolean execute );
+    public void writeValue ( ASDUHeader header, InformationObjectAddress informationObjectAddress, CommandValue<?> value, byte type, MirrorCommand mirrorCommand, boolean execute );
 
 }

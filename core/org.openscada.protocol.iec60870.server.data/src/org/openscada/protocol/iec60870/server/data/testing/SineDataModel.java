@@ -19,6 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.openscada.protocol.iec60870.asdu.ASDUHeader;
 import org.openscada.protocol.iec60870.asdu.types.ASDUAddress;
 import org.openscada.protocol.iec60870.asdu.types.CauseOfTransmission;
+import org.openscada.protocol.iec60870.asdu.types.CommandValue;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.QualityInformation;
 import org.openscada.protocol.iec60870.asdu.types.Value;
@@ -215,19 +216,7 @@ public class SineDataModel extends AbstractBaseDataModel
     }
 
     @Override
-    public void writeCommand ( final ASDUHeader header, final InformationObjectAddress informationObjectAddress, final boolean state, final byte type, final MirrorCommand mirrorCommand, final boolean execute )
-    {
-        performWrite ( mirrorCommand, execute );
-    }
-
-    @Override
-    public void writeValue ( final ASDUHeader header, final InformationObjectAddress informationObjectAddress, final float value, final byte type, final MirrorCommand mirrorCommand, final boolean execute )
-    {
-        performWrite ( mirrorCommand, execute );
-    }
-
-    @Override
-    public void writeScaledValue ( final ASDUHeader header, final InformationObjectAddress informationObjectAddress, final short value, final byte type, final MirrorCommand mirrorCommand, final boolean execute )
+    public void writeValue ( ASDUHeader header, InformationObjectAddress informationObjectAddress, CommandValue<?> value, byte type, MirrorCommand mirrorCommand, boolean execute )
     {
         performWrite ( mirrorCommand, execute );
     }
@@ -237,5 +226,4 @@ public class SineDataModel extends AbstractBaseDataModel
         // we silently accept it
         mirrorCommand.sendActivationTermination ();
     }
-
 }
