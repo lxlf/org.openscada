@@ -19,6 +19,7 @@ import org.eclipse.scada.configuration.world.lib.oscar.EquinoxApplicationProcess
 import org.eclipse.scada.configuration.world.lib.oscar.OscarContext;
 import org.openscada.configuration.iec60870.ClientDevice;
 import org.openscada.configuration.iec60870.DriverApplication;
+import org.openscada.configuration.iec60870.ItemType;
 import org.openscada.configuration.iec60870.lib.Configurations;
 import org.openscada.configuration.lib.Helper;
 
@@ -59,6 +60,11 @@ public class DriverProcessor extends EquinoxApplicationProcessor
 
         Configurations.encode ( data, "protocol", device.getProtocolOptions () ); //$NON-NLS-1$
         Configurations.encode ( data, "dataModule", device.getDataModuleOptions () ); //$NON-NLS-1$
+
+        for ( ItemType itemType : device.getItemTypes () )
+        {
+            data.put ( "itemType." + itemType.getItem (), itemType.getType ().getName () );
+        }
 
         ctx.addData ( "org.openscada.da.server.iec60870.connection", id, data ); //$NON-NLS-1$
     }

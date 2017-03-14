@@ -11,6 +11,7 @@
  */
 package org.openscada.configuration.iec60870;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.scada.configuration.infrastructure.Device;
 
 /**
@@ -25,6 +26,7 @@ import org.eclipse.scada.configuration.infrastructure.Device;
  *   <li>{@link org.openscada.configuration.iec60870.IEC60870Device#getDataModuleOptions <em>Data Module Options</em>}</li>
  *   <li>{@link org.openscada.configuration.iec60870.IEC60870Device#getProtocolOptions <em>Protocol Options</em>}</li>
  *   <li>{@link org.openscada.configuration.iec60870.IEC60870Device#getPort <em>Port</em>}</li>
+ *   <li>{@link org.openscada.configuration.iec60870.IEC60870Device#getItemTypes <em>Item Types</em>}</li>
  * </ul>
  *
  * @see org.openscada.configuration.iec60870.IEC60870Package#getIEC60870Device()
@@ -114,5 +116,21 @@ public interface IEC60870Device extends Device
      * @generated
      */
     void setPort ( int value );
+
+    /**
+     * Returns the value of the '<em><b>Item Types</b></em>' containment reference list.
+     * The list contents are of type {@link org.openscada.configuration.iec60870.ItemType}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Item Types</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Item Types</em>' containment reference list.
+     * @see org.openscada.configuration.iec60870.IEC60870Package#getIEC60870Device_ItemTypes()
+     * @model containment="true"
+     * @generated
+     */
+    EList<ItemType> getItemTypes ();
 
 } // IEC60870Device

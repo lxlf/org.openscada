@@ -38,7 +38,9 @@ import org.openscada.configuration.iec60870.IEC60870Device;
 import org.openscada.configuration.iec60870.IEC60870Driver;
 import org.openscada.configuration.iec60870.IEC60870Factory;
 import org.openscada.configuration.iec60870.IEC60870Package;
+import org.openscada.configuration.iec60870.IECType;
 import org.openscada.configuration.iec60870.Item;
+import org.openscada.configuration.iec60870.ItemType;
 import org.openscada.configuration.iec60870.ProtocolOptions;
 import org.openscada.configuration.iec60870.util.IEC60870Validator;
 
@@ -132,7 +134,21 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass itemTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EEnum dataTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum iecTypeEEnum = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -681,6 +697,16 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getClientDevice_ItemTypes ()
+    {
+        return (EReference)clientDeviceEClass.getEStructuralFeatures ().get ( 4 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public EClass getDriverApplication ()
     {
@@ -791,10 +817,60 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getIEC60870Device_ItemTypes ()
+    {
+        return (EReference)iec60870DeviceEClass.getEStructuralFeatures ().get ( 3 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getItemType ()
+    {
+        return itemTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getItemType_Item ()
+    {
+        return (EAttribute)itemTypeEClass.getEStructuralFeatures ().get ( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getItemType_Type ()
+    {
+        return (EAttribute)itemTypeEClass.getEStructuralFeatures ().get ( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public EEnum getDataType ()
     {
         return dataTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getIECType ()
+    {
+        return iecTypeEEnum;
     }
 
     /**
@@ -888,6 +964,7 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         createEReference ( clientDeviceEClass, CLIENT_DEVICE__PROTOCOL_OPTIONS );
         createEReference ( clientDeviceEClass, CLIENT_DEVICE__DATA_MODULE_OPTIONS );
         createEAttribute ( clientDeviceEClass, CLIENT_DEVICE__ID );
+        createEReference ( clientDeviceEClass, CLIENT_DEVICE__ITEM_TYPES );
 
         driverApplicationEClass = createEClass ( DRIVER_APPLICATION );
         createEReference ( driverApplicationEClass, DRIVER_APPLICATION__DEVICES );
@@ -902,9 +979,15 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         createEReference ( iec60870DeviceEClass, IEC60870_DEVICE__DATA_MODULE_OPTIONS );
         createEReference ( iec60870DeviceEClass, IEC60870_DEVICE__PROTOCOL_OPTIONS );
         createEAttribute ( iec60870DeviceEClass, IEC60870_DEVICE__PORT );
+        createEReference ( iec60870DeviceEClass, IEC60870_DEVICE__ITEM_TYPES );
+
+        itemTypeEClass = createEClass ( ITEM_TYPE );
+        createEAttribute ( itemTypeEClass, ITEM_TYPE__ITEM );
+        createEAttribute ( itemTypeEClass, ITEM_TYPE__TYPE );
 
         // Create enums
         dataTypeEEnum = createEEnum ( DATA_TYPE );
+        iecTypeEEnum = createEEnum ( IEC_TYPE );
 
         // Create data types
         addressEDataType = createEDataType ( ADDRESS );
@@ -1004,6 +1087,7 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         initEReference ( getClientDevice_ProtocolOptions (), this.getProtocolOptions (), null, "protocolOptions", null, 0, 1, ClientDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference ( getClientDevice_DataModuleOptions (), this.getClientDataModuleOptions (), null, "dataModuleOptions", null, 0, 1, ClientDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute ( getClientDevice_Id (), ecorePackage.getEString (), "id", null, 1, 1, ClientDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference ( getClientDevice_ItemTypes (), this.getItemType (), null, "itemTypes", null, 0, -1, ClientDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass ( driverApplicationEClass, DriverApplication.class, "DriverApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEReference ( getDriverApplication_Devices (), this.getClientDevice (), null, "devices", null, 0, -1, DriverApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
@@ -1018,11 +1102,26 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         initEReference ( getIEC60870Device_DataModuleOptions (), this.getClientDataModuleOptions (), null, "dataModuleOptions", null, 0, 1, IEC60870Device.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference ( getIEC60870Device_ProtocolOptions (), this.getProtocolOptions (), null, "protocolOptions", null, 0, 1, IEC60870Device.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute ( getIEC60870Device_Port (), ecorePackage.getEInt (), "port", "2404", 1, 1, IEC60870Device.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+        initEReference ( getIEC60870Device_ItemTypes (), this.getItemType (), null, "itemTypes", null, 0, -1, IEC60870Device.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass ( itemTypeEClass, ItemType.class, "ItemType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute ( getItemType_Item (), theEcorePackage.getEString (), "item", null, 0, 1, ItemType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute ( getItemType_Type (), this.getIECType (), "type", null, 0, 1, ItemType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         // Initialize enums and add enum literals
         initEEnum ( dataTypeEEnum, DataType.class, "DataType" ); //$NON-NLS-1$
         addEEnumLiteral ( dataTypeEEnum, DataType.FLOAT );
         addEEnumLiteral ( dataTypeEEnum, DataType.BOOLEAN );
+
+        initEEnum ( iecTypeEEnum, IECType.class, "IECType" ); //$NON-NLS-1$
+        addEEnumLiteral ( iecTypeEEnum, IECType.CSC_NA_1 );
+        addEEnumLiteral ( iecTypeEEnum, IECType.CSC_TA_1 );
+        addEEnumLiteral ( iecTypeEEnum, IECType.CSE_NA_1 );
+        addEEnumLiteral ( iecTypeEEnum, IECType.CSE_TA_1 );
+        addEEnumLiteral ( iecTypeEEnum, IECType.CSE_NB_1 );
+        addEEnumLiteral ( iecTypeEEnum, IECType.CSE_TB_1 );
+        addEEnumLiteral ( iecTypeEEnum, IECType.CSE_NC_1 );
+        addEEnumLiteral ( iecTypeEEnum, IECType.CSE_TC_1 );
 
         // Initialize data types
         initEDataType ( addressEDataType, AddressInformation.class, "Address", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
@@ -1051,8 +1150,8 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
     {
         String source = "http://www.eclipse.org/OCL/Import"; //$NON-NLS-1$	
         addAnnotation ( this, source, new String[] { "component", "/resource/org.eclipse.scada.configuration.component/model/component.ecore#/", //$NON-NLS-1$ //$NON-NLS-2$
-        "ecore", "http://www.eclipse.org/emf/2002/Ecore#/", //$NON-NLS-1$ //$NON-NLS-2$
-        "script_0", "/resource/org.eclipse.scada.configuration.script/model/script.ecore#/" //$NON-NLS-1$ //$NON-NLS-2$
+                "ecore", "http://www.eclipse.org/emf/2002/Ecore#/", //$NON-NLS-1$ //$NON-NLS-2$
+                "script_0", "/resource/org.eclipse.scada.configuration.script/model/script.ecore#/" //$NON-NLS-1$ //$NON-NLS-2$
         } );
     }
 
@@ -1066,8 +1165,8 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
     {
         String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$	
         addAnnotation ( this, source, new String[] { "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$ //$NON-NLS-2$
-        "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$ //$NON-NLS-2$
-        "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL" //$NON-NLS-1$ //$NON-NLS-2$
+                "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$ //$NON-NLS-2$
+                "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation ( protocolOptionsEClass, source, new String[] { "constraints", "asduAddressSizeCheck\ncauseOfTransmissionSizeCheck" //$NON-NLS-1$ //$NON-NLS-2$
         } );
@@ -1085,8 +1184,8 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
     {
         String source = "http://www.eclipse.org/emf/2002/Ecore/OCL"; //$NON-NLS-1$	
         addAnnotation ( protocolOptionsEClass, source, new String[] { "asduAddressSizeCheck", "asduAddressSize>=1 and asduAddressSize <=2", //$NON-NLS-1$ //$NON-NLS-2$
-        "causeOfTransmissionSizeCheck", "causeOfTransmissionSize>=1 and causeOfTransmissionSize<=2", //$NON-NLS-1$ //$NON-NLS-2$
-        "informationObjectAddressSizeCheck", "informationObjectAddressSize>=1 and informationObjectAddressSize<=3" //$NON-NLS-1$ //$NON-NLS-2$
+                "causeOfTransmissionSizeCheck", "causeOfTransmissionSize>=1 and causeOfTransmissionSize<=2", //$NON-NLS-1$ //$NON-NLS-2$
+                "informationObjectAddressSizeCheck", "informationObjectAddressSize>=1 and informationObjectAddressSize<=3" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation ( iec60870DeviceEClass, source, new String[] { "portCheck", "port > 0 and port < 65535" //$NON-NLS-1$ //$NON-NLS-2$
         } );
@@ -1108,13 +1207,13 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         addAnnotation ( getProtocolOptions_Timeout3 (), source, new String[] { "name", "t3" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation ( getProtocolOptions_AsduAddressSize (), source, new String[] { "name", "asduAddressType", //$NON-NLS-1$ //$NON-NLS-2$
-        "format", "SIZE_%d" //$NON-NLS-1$ //$NON-NLS-2$
+                "format", "SIZE_%d" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation ( getProtocolOptions_InformationObjectAddressSize (), source, new String[] { "name", "informationObjectAddressType", //$NON-NLS-1$ //$NON-NLS-2$
-        "format", "SIZE_%d" //$NON-NLS-1$ //$NON-NLS-2$
+                "format", "SIZE_%d" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation ( getProtocolOptions_CauseOfTransmissionSize (), source, new String[] { "name", "causeOfTransmissionType", //$NON-NLS-1$ //$NON-NLS-2$
-        "format", "SIZE_%d" //$NON-NLS-1$ //$NON-NLS-2$
+                "format", "SIZE_%d" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation ( getProtocolOptions_W (), source, new String[] { "name", "w" //$NON-NLS-1$ //$NON-NLS-2$
         } );

@@ -25,6 +25,7 @@ import org.eclipse.scada.configuration.world.Driver;
 import org.eclipse.scada.configuration.world.NamedDocumentable;
 import org.eclipse.scada.configuration.world.osgi.ApplicationModule;
 import org.eclipse.scada.configuration.world.osgi.EquinoxApplication;
+import org.openscada.configuration.iec60870.*;
 import org.openscada.configuration.iec60870.ClientDataModuleOptions;
 import org.openscada.configuration.iec60870.ClientDevice;
 import org.openscada.configuration.iec60870.DataModuleOptions;
@@ -219,6 +220,14 @@ public class IEC60870Switch<T> extends Switch<T>
                     result = defaultCase ( theEObject );
                 return result;
             }
+            case IEC60870Package.ITEM_TYPE:
+            {
+                ItemType itemType = (ItemType)theEObject;
+                T result = caseItemType ( itemType );
+                if ( result == null )
+                    result = defaultCase ( theEObject );
+                return result;
+            }
             default:
                 return defaultCase ( theEObject );
         }
@@ -396,6 +405,22 @@ public class IEC60870Switch<T> extends Switch<T>
      * @generated
      */
     public T caseIEC60870Device ( IEC60870Device object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Item Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Item Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseItemType ( ItemType object )
     {
         return null;
     }
