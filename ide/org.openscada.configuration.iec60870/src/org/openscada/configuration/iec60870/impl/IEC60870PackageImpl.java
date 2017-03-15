@@ -346,6 +346,16 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getDevice_CyclicPeriod ()
+    {
+        return (EAttribute)deviceEClass.getEStructuralFeatures ().get ( 7 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public EClass getItem ()
     {
@@ -459,6 +469,16 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
     public EAttribute getExporterItemInterceptor_SpontaneousBufferWindow ()
     {
         return (EAttribute)exporterItemInterceptorEClass.getEStructuralFeatures ().get ( 5 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getExporterItemInterceptor_CyclicPeriod ()
+    {
+        return (EAttribute)exporterItemInterceptorEClass.getEStructuralFeatures ().get ( 6 );
     }
 
     /**
@@ -927,6 +947,7 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         createEReference ( deviceEClass, DEVICE__DATA_MODULE_OPTIONS );
         createEReference ( deviceEClass, DEVICE__HIVE_PROPERTIES );
         createEAttribute ( deviceEClass, DEVICE__SPONTANEOUS_BUFFER_WINDOW );
+        createEAttribute ( deviceEClass, DEVICE__CYCLIC_PERIOD );
 
         itemEClass = createEClass ( ITEM );
         createEReference ( itemEClass, ITEM__SOURCE );
@@ -940,6 +961,7 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         createEAttribute ( exporterItemInterceptorEClass, EXPORTER_ITEM_INTERCEPTOR__PORT );
         createEReference ( exporterItemInterceptorEClass, EXPORTER_ITEM_INTERCEPTOR__HIVE_PROPERTIES );
         createEAttribute ( exporterItemInterceptorEClass, EXPORTER_ITEM_INTERCEPTOR__SPONTANEOUS_BUFFER_WINDOW );
+        createEAttribute ( exporterItemInterceptorEClass, EXPORTER_ITEM_INTERCEPTOR__CYCLIC_PERIOD );
 
         protocolOptionsEClass = createEClass ( PROTOCOL_OPTIONS );
         createEAttribute ( protocolOptionsEClass, PROTOCOL_OPTIONS__TIMEOUT1 );
@@ -1050,6 +1072,7 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         initEReference ( getDevice_DataModuleOptions (), this.getDataModuleOptions (), null, "dataModuleOptions", null, 0, 1, Device.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference ( getDevice_HiveProperties (), theWorldPackage.getPropertyEntry (), null, "hiveProperties", null, 0, -1, Device.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute ( getDevice_SpontaneousBufferWindow (), theEcorePackage.getELongObject (), "spontaneousBufferWindow", null, 0, 1, Device.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute ( getDevice_CyclicPeriod (), theEcorePackage.getELongObject (), "cyclicPeriod", null, 0, 1, Device.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass ( itemEClass, Item.class, "Item", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEReference ( getItem_Source (), theOsgiPackage.getItem (), null, "source", null, 1, 1, Item.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
@@ -1063,6 +1086,7 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         initEAttribute ( getExporterItemInterceptor_Port (), ecorePackage.getEShort (), "port", "2404", 1, 1, ExporterItemInterceptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEReference ( getExporterItemInterceptor_HiveProperties (), theWorldPackage.getPropertyEntry (), null, "hiveProperties", null, 0, -1, ExporterItemInterceptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute ( getExporterItemInterceptor_SpontaneousBufferWindow (), theEcorePackage.getELongObject (), "spontaneousBufferWindow", null, 0, 1, ExporterItemInterceptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute ( getExporterItemInterceptor_CyclicPeriod (), theEcorePackage.getELongObject (), "cyclicPeriod", null, 0, 1, ExporterItemInterceptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass ( protocolOptionsEClass, ProtocolOptions.class, "ProtocolOptions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEAttribute ( getProtocolOptions_Timeout1 (), ecorePackage.getEInt (), "timeout1", "15000", 1, 1, ProtocolOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$

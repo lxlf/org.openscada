@@ -13,6 +13,7 @@ package org.openscada.protocol.iec60870.server.data;
 import java.util.List;
 
 import org.openscada.protocol.iec60870.asdu.types.ASDUAddress;
+import org.openscada.protocol.iec60870.asdu.types.CauseOfTransmission;
 import org.openscada.protocol.iec60870.asdu.types.InformationEntry;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.Value;
@@ -37,24 +38,24 @@ public class DefaultSubscription implements Subscription
         return this.dataModel.disposeSubscription ( this );
     }
 
-    public void notifyChangeBoolean ( final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Boolean>> values )
+    public void notifyChangeBoolean ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Boolean>> values )
     {
-        this.listener.dataChangeBoolean ( asduAddress, startAddress, values );
+        this.listener.dataChangeBoolean ( cause, asduAddress, startAddress, values );
     }
 
-    public void notifyChangeBoolean ( final ASDUAddress asduAddress, final List<InformationEntry<Boolean>> values )
+    public void notifyChangeBoolean ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final List<InformationEntry<Boolean>> values )
     {
-        this.listener.dataChangeBoolean ( asduAddress, values );
+        this.listener.dataChangeBoolean ( cause, asduAddress, values );
     }
 
-    public void notifyChangeFloat ( final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Float>> values )
+    public void notifyChangeFloat ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Float>> values )
     {
-        this.listener.dataChangeFloat ( asduAddress, startAddress, values );
+        this.listener.dataChangeFloat ( cause, asduAddress, startAddress, values );
     }
 
-    public void notifyChangeFloat ( final ASDUAddress asduAddress, final List<InformationEntry<Float>> values )
+    public void notifyChangeFloat ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final List<InformationEntry<Float>> values )
     {
-        this.listener.dataChangeFloat ( asduAddress, values );
+        this.listener.dataChangeFloat ( cause, asduAddress, values );
     }
 
 }

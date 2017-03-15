@@ -11,12 +11,13 @@
 package org.openscada.da.server.exporter.iec60870;
 
 import org.openscada.protocol.iec60870.asdu.types.ASDUAddress;
+import org.openscada.protocol.iec60870.asdu.types.CauseOfTransmission;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.Value;
 
 public interface ChangeModel
 {
-    public void notifyChange ( ASDUAddress asduAddress, InformationObjectAddress informationObjectAddress, final Value<?> value );
+    public void notifyChange ( CauseOfTransmission cause, ASDUAddress asduAddress, InformationObjectAddress informationObjectAddress, final Value<?> value );
 
     public void dispose ();
 }

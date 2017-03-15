@@ -71,6 +71,7 @@ public class ExporterItemInterceptorItemProvider extends ItemProviderAdapter imp
             addMasterOnPropertyDescriptor ( object );
             addPortPropertyDescriptor ( object );
             addSpontaneousBufferWindowPropertyDescriptor ( object );
+            addCyclicPeriodPropertyDescriptor ( object );
         }
         return itemPropertyDescriptors;
     }
@@ -115,6 +116,19 @@ public class ExporterItemInterceptorItemProvider extends ItemProviderAdapter imp
                 getString ( "_UI_PropertyDescriptor_description", "_UI_ExporterItemInterceptor_spontaneousBufferWindow_feature", "_UI_ExporterItemInterceptor_type" ), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 IEC60870Package.Literals.EXPORTER_ITEM_INTERCEPTOR__SPONTANEOUS_BUFFER_WINDOW, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString ( "_UI_communicationPropertyCategory" ), //$NON-NLS-1$
                 null ) );
+    }
+
+    /**
+     * This adds a property descriptor for the Cyclic Period feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addCyclicPeriodPropertyDescriptor ( Object object )
+    {
+        itemPropertyDescriptors.add ( createItemPropertyDescriptor ( ( (ComposeableAdapterFactory)adapterFactory ).getRootAdapterFactory (), getResourceLocator (), getString ( "_UI_ExporterItemInterceptor_cyclicPeriod_feature" ), //$NON-NLS-1$
+                getString ( "_UI_PropertyDescriptor_description", "_UI_ExporterItemInterceptor_cyclicPeriod_feature", "_UI_ExporterItemInterceptor_type" ), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                IEC60870Package.Literals.EXPORTER_ITEM_INTERCEPTOR__CYCLIC_PERIOD, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
     }
 
     /**
@@ -195,6 +209,7 @@ public class ExporterItemInterceptorItemProvider extends ItemProviderAdapter imp
         {
             case IEC60870Package.EXPORTER_ITEM_INTERCEPTOR__PORT:
             case IEC60870Package.EXPORTER_ITEM_INTERCEPTOR__SPONTANEOUS_BUFFER_WINDOW:
+            case IEC60870Package.EXPORTER_ITEM_INTERCEPTOR__CYCLIC_PERIOD:
                 fireNotifyChanged ( new ViewerNotification ( notification, notification.getNotifier (), false, true ) );
                 return;
             case IEC60870Package.EXPORTER_ITEM_INTERCEPTOR__PROPERTIES:

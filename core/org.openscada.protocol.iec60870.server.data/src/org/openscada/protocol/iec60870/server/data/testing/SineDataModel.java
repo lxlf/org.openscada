@@ -22,6 +22,7 @@ import org.openscada.protocol.iec60870.asdu.types.CauseOfTransmission;
 import org.openscada.protocol.iec60870.asdu.types.CommandValue;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.QualityInformation;
+import org.openscada.protocol.iec60870.asdu.types.StandardCause;
 import org.openscada.protocol.iec60870.asdu.types.Value;
 import org.openscada.protocol.iec60870.io.MirrorCommand;
 import org.openscada.protocol.iec60870.server.data.AbstractBaseDataModel;
@@ -60,6 +61,8 @@ public class SineDataModel extends AbstractBaseDataModel
 
     private final InformationObjectAddress startAddress = new InformationObjectAddress ( 1 );
 
+    private final CauseOfTransmission spontaneousCause = new CauseOfTransmission ( StandardCause.SPONTANEOUS );
+
     public SineDataModel ( final int size )
     {
         super ( "SineDataModel" );
@@ -89,7 +92,7 @@ public class SineDataModel extends AbstractBaseDataModel
         {
             this.values.set ( i, Value.ok ( (float)Math.sin ( Math.toRadians ( tix / 1000.0 ) ) * i ) );
         }
-        notifyChangeFloat ( ASDU_ADDRESS, this.startAddress, this.values );
+        notifyChangeFloat ( spontaneousCause, ASDU_ADDRESS, this.startAddress, this.values );
     }
 
     @Override
@@ -116,7 +119,7 @@ public class SineDataModel extends AbstractBaseDataModel
     }
 
     @Override
-    public ListenableFuture<Void> readAll ( final ASDUAddress asduAddress, final Runnable prepare, final DataListener listener )
+    public ListenableFuture<Void> readAll ( CauseOfTransmission cause, final ASDUAddress asduAddress, final Runnable prepare, final DataListener listener )
     {
         if ( asduAddress.getAddress () != 1 )
         {
@@ -139,7 +142,7 @@ public class SineDataModel extends AbstractBaseDataModel
     {
         logger.debug ( "performReadAll" );
 
-        listener.dataChangeFloat ( ASDU_ADDRESS, this.startAddress, new ArrayList<> ( this.values ) );
+        listener.dataChangeFloat ( spontaneousCause, ASDU_ADDRESS, this.startAddress, new ArrayList<> ( this.values ) );
 
         logger.debug ( "performReadAll - done" );
         return null;

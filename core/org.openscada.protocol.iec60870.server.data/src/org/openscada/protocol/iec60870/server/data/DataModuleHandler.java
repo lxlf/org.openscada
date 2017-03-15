@@ -18,7 +18,6 @@ import org.openscada.protocol.iec60870.asdu.message.DataTransmissionMessage;
 import org.openscada.protocol.iec60870.asdu.message.InterrogationCommand;
 import org.openscada.protocol.iec60870.asdu.message.ReadCommand;
 import org.openscada.protocol.iec60870.asdu.message.ValueCommandMessage;
-import org.openscada.protocol.iec60870.asdu.types.CauseOfTransmission;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.StandardCause;
 import org.openscada.protocol.iec60870.asdu.types.Value;
@@ -78,7 +77,7 @@ public class DataModuleHandler extends AbstractModuleHandler
         this.source = new DataModuleMessageSource ( this.options, ctx.executor (), new ContextChannelWriter ( ctx ), this.dataModel, this.backgroundScanPeriod );
         this.messageChannel.addSource ( this.source );
 
-        this.spontHandler = new DataListenerImpl ( this.source, new CauseOfTransmission ( StandardCause.SPONTANEOUS ) );
+        this.spontHandler = new DataListenerImpl ( this.source );
 
         super.channelActive ( ctx );
     }

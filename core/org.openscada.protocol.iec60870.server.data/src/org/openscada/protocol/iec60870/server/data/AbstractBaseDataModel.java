@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.eclipse.scada.utils.concurrent.NamedThreadFactory;
 import org.openscada.protocol.iec60870.asdu.types.ASDUAddress;
+import org.openscada.protocol.iec60870.asdu.types.CauseOfTransmission;
 import org.openscada.protocol.iec60870.asdu.types.InformationEntry;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.Value;
@@ -78,7 +79,7 @@ public abstract class AbstractBaseDataModel implements DataModel
         } );
     }
 
-    protected synchronized void notifyChangeBoolean ( final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Boolean>> values )
+    protected synchronized void notifyChangeBoolean ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Boolean>> values )
     {
         for ( final DefaultSubscription sub : this.subscriptions )
         {
@@ -87,13 +88,13 @@ public abstract class AbstractBaseDataModel implements DataModel
                 @Override
                 public void run ()
                 {
-                    sub.notifyChangeBoolean ( asduAddress, startAddress, values );
+                    sub.notifyChangeBoolean ( cause, asduAddress, startAddress, values );
                 }
             } );
         }
     }
 
-    protected synchronized void notifyChangeBoolean ( final ASDUAddress asduAddress, final List<InformationEntry<Boolean>> values )
+    protected synchronized void notifyChangeBoolean ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final List<InformationEntry<Boolean>> values )
     {
         for ( final DefaultSubscription sub : this.subscriptions )
         {
@@ -102,13 +103,13 @@ public abstract class AbstractBaseDataModel implements DataModel
                 @Override
                 public void run ()
                 {
-                    sub.notifyChangeBoolean ( asduAddress, values );
+                    sub.notifyChangeBoolean ( cause, asduAddress, values );
                 }
             } );
         }
     }
 
-    protected synchronized void notifyChangeFloat ( final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Float>> values )
+    protected synchronized void notifyChangeFloat ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Float>> values )
     {
         for ( final DefaultSubscription sub : this.subscriptions )
         {
@@ -117,13 +118,13 @@ public abstract class AbstractBaseDataModel implements DataModel
                 @Override
                 public void run ()
                 {
-                    sub.notifyChangeFloat ( asduAddress, startAddress, values );
+                    sub.notifyChangeFloat ( cause, asduAddress, startAddress, values );
                 }
             } );
         }
     }
 
-    protected synchronized void notifyChangeFloat ( final ASDUAddress asduAddress, final List<InformationEntry<Float>> values )
+    protected synchronized void notifyChangeFloat ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final List<InformationEntry<Float>> values )
     {
         for ( final DefaultSubscription sub : this.subscriptions )
         {
@@ -132,7 +133,7 @@ public abstract class AbstractBaseDataModel implements DataModel
                 @Override
                 public void run ()
                 {
-                    sub.notifyChangeFloat ( asduAddress, values );
+                    sub.notifyChangeFloat ( cause, asduAddress, values );
                 }
             } );
         }

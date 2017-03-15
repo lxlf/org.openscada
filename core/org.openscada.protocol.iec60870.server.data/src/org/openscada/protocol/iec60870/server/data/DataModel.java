@@ -12,6 +12,7 @@ package org.openscada.protocol.iec60870.server.data;
 
 import org.openscada.protocol.iec60870.asdu.ASDUHeader;
 import org.openscada.protocol.iec60870.asdu.types.ASDUAddress;
+import org.openscada.protocol.iec60870.asdu.types.CauseOfTransmission;
 import org.openscada.protocol.iec60870.asdu.types.CommandValue;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.Value;
@@ -74,7 +75,7 @@ public interface DataModel
      * @return the future which indicates the end of the transmission. This can
      *         be <code>null</code> if the ASDU address was unknown.
      */
-    public ListenableFuture<Void> readAll ( ASDUAddress asduAddress, Runnable prepare, DataListener listener );
+    public ListenableFuture<Void> readAll ( CauseOfTransmission cause, ASDUAddress asduAddress, Runnable prepare, DataListener listener );
 
     /**
      * Create a new background iterator <br/>

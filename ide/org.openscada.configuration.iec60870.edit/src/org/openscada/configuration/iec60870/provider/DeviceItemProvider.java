@@ -69,6 +69,7 @@ public class DeviceItemProvider extends ItemProviderAdapter implements IEditingD
             addIdPropertyDescriptor ( object );
             addEndpointPropertyDescriptor ( object );
             addSpontaneousBufferWindowPropertyDescriptor ( object );
+            addCyclicPeriodPropertyDescriptor ( object );
         }
         return itemPropertyDescriptors;
     }
@@ -110,6 +111,19 @@ public class DeviceItemProvider extends ItemProviderAdapter implements IEditingD
         itemPropertyDescriptors.add ( createItemPropertyDescriptor ( ( (ComposeableAdapterFactory)adapterFactory ).getRootAdapterFactory (), getResourceLocator (), getString ( "_UI_Device_spontaneousBufferWindow_feature" ), //$NON-NLS-1$
                 getString ( "_UI_PropertyDescriptor_description", "_UI_Device_spontaneousBufferWindow_feature", "_UI_Device_type" ), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 IEC60870Package.Literals.DEVICE__SPONTANEOUS_BUFFER_WINDOW, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
+    }
+
+    /**
+     * This adds a property descriptor for the Cyclic Period feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addCyclicPeriodPropertyDescriptor ( Object object )
+    {
+        itemPropertyDescriptors.add ( createItemPropertyDescriptor ( ( (ComposeableAdapterFactory)adapterFactory ).getRootAdapterFactory (), getResourceLocator (), getString ( "_UI_Device_cyclicPeriod_feature" ), //$NON-NLS-1$
+                getString ( "_UI_PropertyDescriptor_description", "_UI_Device_cyclicPeriod_feature", "_UI_Device_type" ), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                IEC60870Package.Literals.DEVICE__CYCLIC_PERIOD, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
     }
 
     /**
@@ -190,6 +204,7 @@ public class DeviceItemProvider extends ItemProviderAdapter implements IEditingD
         {
             case IEC60870Package.DEVICE__ID:
             case IEC60870Package.DEVICE__SPONTANEOUS_BUFFER_WINDOW:
+            case IEC60870Package.DEVICE__CYCLIC_PERIOD:
                 fireNotifyChanged ( new ViewerNotification ( notification, notification.getNotifier (), false, true ) );
                 return;
             case IEC60870Package.DEVICE__ITEMS:

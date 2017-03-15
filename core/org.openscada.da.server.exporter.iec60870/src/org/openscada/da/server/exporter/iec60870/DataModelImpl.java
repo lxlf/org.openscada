@@ -44,6 +44,7 @@ import org.openscada.protocol.iec60870.asdu.types.CommandValue;
 import org.openscada.protocol.iec60870.asdu.types.InformationEntry;
 import org.openscada.protocol.iec60870.asdu.types.InformationObjectAddress;
 import org.openscada.protocol.iec60870.asdu.types.QualityInformation;
+import org.openscada.protocol.iec60870.asdu.types.StandardCause;
 import org.openscada.protocol.iec60870.asdu.types.Value;
 import org.openscada.protocol.iec60870.io.MirrorCommand;
 import org.openscada.protocol.iec60870.server.data.AbstractBaseDataModel;
@@ -156,6 +157,10 @@ public class DataModelImpl extends AbstractBaseDataModel
     }
 
     private final static Logger logger = LoggerFactory.getLogger ( DataModelImpl.class );
+    
+    private final CauseOfTransmission spontaneousCause = new CauseOfTransmission ( StandardCause.SPONTANEOUS );
+
+    private final CauseOfTransmission periodicCause = new CauseOfTransmission ( StandardCause.PERIODIC );
 
     private final SingleSubscriptionManager manager;
 
@@ -173,7 +178,7 @@ public class DataModelImpl extends AbstractBaseDataModel
 
     private final ChangeModel changeModel;
 
-    public DataModelImpl ( final HiveSource hiveSource, final Set<MappingEntry> entries, final Properties hiveProperties, final InformationBean info, final Long flushDelay )
+    public DataModelImpl ( final HiveSource hiveSource, final Set<MappingEntry> entries, final Properties hiveProperties, final InformationBean info, final Long flushDelay, final Long period )
     {
         super ( "org.openscada.da.server.exporter.iec60870.DataModel" );
 
@@ -193,6 +198,30 @@ public class DataModelImpl extends AbstractBaseDataModel
         this.manager.start ();
 
         attach ( entries );
+        if ( period != null && period > 0 )
+        {
+            this.executor.scheduleAtFixedRate ( new Runnable () {
+                @Override
+                public void run ()
+                {
+                    sendOutCachedValues ();
+                }
+            }, period, period, TimeUnit.MILLISECONDS );
+        }
+    }
+
+    protected void sendOutCachedValues ()
+    {
+        for ( final Map.Entry<Integer, SortedMap<Integer, Value<?>>> entry : cache.entrySet () )
+        {
+            final ASDUAddress asdu = ASDUAddress.valueOf ( entry.getKey () );
+
+            for ( final Map.Entry<Integer, Value<?>> valueEntry : entry.getValue ().entrySet () )
+            {
+                final InformationObjectAddress ioa = InformationObjectAddress.valueOf ( valueEntry.getKey () );
+                changeModel.notifyChange (periodicCause, asdu, ioa, valueEntry.getValue () );
+            }
+        }
     }
 
     private ChangeModel makeInstantChangeModel ()
@@ -200,15 +229,15 @@ public class DataModelImpl extends AbstractBaseDataModel
         return new InstantChangeModel ( new InstantChangeModel.Context () {
 
             @Override
-            public void notifyChangeFloat ( final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Float>> values )
+            public void notifyChangeFloat (final CauseOfTransmission cause, final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Float>> values )
             {
-                DataModelImpl.this.notifyChangeFloat ( asduAddress, startAddress, values );
+                DataModelImpl.this.notifyChangeFloat ( cause, asduAddress, startAddress, values );
             }
 
             @Override
-            public void notifyChangeBoolean ( final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Boolean>> values )
+            public void notifyChangeBoolean (final CauseOfTransmission cause,  final ASDUAddress asduAddress, final InformationObjectAddress startAddress, final List<Value<Boolean>> values )
             {
-                DataModelImpl.this.notifyChangeBoolean ( asduAddress, startAddress, values );
+                DataModelImpl.this.notifyChangeBoolean ( cause, asduAddress, startAddress, values );
             }
         } );
     }
@@ -218,15 +247,15 @@ public class DataModelImpl extends AbstractBaseDataModel
         return new BufferingChangeModel ( new BufferingChangeModel.Context () {
 
             @Override
-            public void notifyBoolean ( final ASDUAddress asduAddress, final List<InformationEntry<Boolean>> values )
+            public void notifyBoolean ( final CauseOfTransmission cause,final ASDUAddress asduAddress, final List<InformationEntry<Boolean>> values )
             {
-                DataModelImpl.this.notifyChangeBoolean ( asduAddress, values );
+                DataModelImpl.this.notifyChangeBoolean ( cause, asduAddress, values );
             }
 
             @Override
-            public void notifyFloat ( final ASDUAddress asduAddress, final List<InformationEntry<Float>> values )
+            public void notifyFloat (final CauseOfTransmission cause, final ASDUAddress asduAddress, final List<InformationEntry<Float>> values )
             {
-                DataModelImpl.this.notifyChangeFloat ( asduAddress, values );
+                DataModelImpl.this.notifyChangeFloat ( cause, asduAddress, values );
             }
         }, this.executor, flushDelay );
     }
@@ -430,7 +459,7 @@ public class DataModelImpl extends AbstractBaseDataModel
     }
 
     @Override
-    public synchronized ListenableFuture<Void> readAll ( final ASDUAddress asduAddress, final Runnable prepare, final DataListener listener )
+    public synchronized ListenableFuture<Void> readAll ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final Runnable prepare, final DataListener listener )
     {
         final Map<Integer, Value<?>> map = this.cache.get ( asduAddress.getAddress () );
         if ( map == null )
@@ -447,17 +476,17 @@ public class DataModelImpl extends AbstractBaseDataModel
             @Override
             public Void call ()
             {
-                performReadAll ( asduAddress, listener, map2 );
+                performReadAll ( cause, asduAddress, listener, map2 );
                 return null;
             }
         } );
     }
 
-    protected synchronized void performReadAll ( final ASDUAddress asduAddress, final DataListener listener, final Map<Integer, Value<?>> map )
+    protected synchronized void performReadAll ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final DataListener listener, final Map<Integer, Value<?>> map )
     {
         for ( final Map.Entry<Integer, Value<?>> entry : map.entrySet () )
         {
-            fireListener ( asduAddress, listener, entry );
+            fireListener ( cause, asduAddress, listener, entry );
         }
     }
 
@@ -596,22 +625,22 @@ public class DataModelImpl extends AbstractBaseDataModel
 
     private void notifyChange ( final MappingEntry entry, final Value<?> value )
     {
-        this.changeModel.notifyChange ( ASDUAddress.valueOf ( entry.getAsduAddress () ), new InformationObjectAddress ( entry.getAddress () ), value );
+        this.changeModel.notifyChange ( spontaneousCause, ASDUAddress.valueOf ( entry.getAsduAddress () ), new InformationObjectAddress ( entry.getAddress () ), value );
     }
 
     @SuppressWarnings ( "unchecked" )
-    private static void fireListener ( final ASDUAddress asduAddress, final DataListener listener, final Map.Entry<Integer, Value<?>> entry )
+    private static void fireListener ( final CauseOfTransmission cause, final ASDUAddress asduAddress, final DataListener listener, final Map.Entry<Integer, Value<?>> entry )
     {
         final Value<?> ve = entry.getValue ();
         final Object v = ve.getValue ();
 
         if ( v instanceof Boolean )
         {
-            listener.dataChangeBoolean ( asduAddress, InformationObjectAddress.valueOf ( entry.getKey () ), Collections.singletonList ( (Value<Boolean>)ve ) );
+            listener.dataChangeBoolean ( cause, asduAddress, InformationObjectAddress.valueOf ( entry.getKey () ), Collections.singletonList ( (Value<Boolean>)ve ) );
         }
         else if ( v instanceof Float )
         {
-            listener.dataChangeFloat ( asduAddress, InformationObjectAddress.valueOf ( entry.getKey () ), Collections.singletonList ( (Value<Float>)ve ) );
+            listener.dataChangeFloat ( cause, asduAddress, InformationObjectAddress.valueOf ( entry.getKey () ), Collections.singletonList ( (Value<Float>)ve ) );
         }
     }
 

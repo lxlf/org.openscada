@@ -185,13 +185,22 @@ public interface IEC60870Package extends EPackage
     int DEVICE__SPONTANEOUS_BUFFER_WINDOW = 6;
 
     /**
+     * The feature id for the '<em><b>Cyclic Period</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DEVICE__CYCLIC_PERIOD = 7;
+
+    /**
      * The number of structural features of the '<em>Device</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DEVICE_FEATURE_COUNT = 7;
+    int DEVICE_FEATURE_COUNT = 8;
 
     /**
      * The number of operations of the '<em>Device</em>' class.
@@ -340,13 +349,22 @@ public interface IEC60870Package extends EPackage
     int EXPORTER_ITEM_INTERCEPTOR__SPONTANEOUS_BUFFER_WINDOW = ComponentPackage.ITEM_INTERCEPTOR_FEATURE_COUNT + 5;
 
     /**
+     * The feature id for the '<em><b>Cyclic Period</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPORTER_ITEM_INTERCEPTOR__CYCLIC_PERIOD = ComponentPackage.ITEM_INTERCEPTOR_FEATURE_COUNT + 6;
+
+    /**
      * The number of structural features of the '<em>Exporter Item Interceptor</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EXPORTER_ITEM_INTERCEPTOR_FEATURE_COUNT = ComponentPackage.ITEM_INTERCEPTOR_FEATURE_COUNT + 6;
+    int EXPORTER_ITEM_INTERCEPTOR_FEATURE_COUNT = ComponentPackage.ITEM_INTERCEPTOR_FEATURE_COUNT + 7;
 
     /**
      * The number of operations of the '<em>Exporter Item Interceptor</em>' class.
@@ -1170,6 +1188,17 @@ public interface IEC60870Package extends EPackage
     EAttribute getDevice_SpontaneousBufferWindow ();
 
     /**
+     * Returns the meta object for the attribute '{@link org.openscada.configuration.iec60870.Device#getCyclicPeriod <em>Cyclic Period</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Cyclic Period</em>'.
+     * @see org.openscada.configuration.iec60870.Device#getCyclicPeriod()
+     * @see #getDevice()
+     * @generated
+     */
+    EAttribute getDevice_CyclicPeriod ();
+
+    /**
      * Returns the meta object for class '{@link org.openscada.configuration.iec60870.Item <em>Item</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1287,6 +1316,17 @@ public interface IEC60870Package extends EPackage
      * @generated
      */
     EAttribute getExporterItemInterceptor_SpontaneousBufferWindow ();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.openscada.configuration.iec60870.ExporterItemInterceptor#getCyclicPeriod <em>Cyclic Period</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Cyclic Period</em>'.
+     * @see org.openscada.configuration.iec60870.ExporterItemInterceptor#getCyclicPeriod()
+     * @see #getExporterItemInterceptor()
+     * @generated
+     */
+    EAttribute getExporterItemInterceptor_CyclicPeriod ();
 
     /**
      * Returns the meta object for class '{@link org.openscada.configuration.iec60870.ProtocolOptions <em>Protocol Options</em>}'.
@@ -1816,6 +1856,14 @@ public interface IEC60870Package extends EPackage
         EAttribute DEVICE__SPONTANEOUS_BUFFER_WINDOW = eINSTANCE.getDevice_SpontaneousBufferWindow ();
 
         /**
+         * The meta object literal for the '<em><b>Cyclic Period</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DEVICE__CYCLIC_PERIOD = eINSTANCE.getDevice_CyclicPeriod ();
+
+        /**
          * The meta object literal for the '{@link org.openscada.configuration.iec60870.impl.ItemImpl <em>Item</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1906,6 +1954,14 @@ public interface IEC60870Package extends EPackage
          * @generated
          */
         EAttribute EXPORTER_ITEM_INTERCEPTOR__SPONTANEOUS_BUFFER_WINDOW = eINSTANCE.getExporterItemInterceptor_SpontaneousBufferWindow ();
+
+        /**
+         * The meta object literal for the '<em><b>Cyclic Period</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute EXPORTER_ITEM_INTERCEPTOR__CYCLIC_PERIOD = eINSTANCE.getExporterItemInterceptor_CyclicPeriod ();
 
         /**
          * The meta object literal for the '{@link org.openscada.configuration.iec60870.impl.ProtocolOptionsImpl <em>Protocol Options</em>}' class.
