@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.openscada</groupId>
+		<artifactId>superParent</artifactId>
+		<version>1.5.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<groupId>org.openscada</groupId>
+	<artifactId>deploy</artifactId>
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openscada.p2</groupId>
+			<artifactId>org.openscada</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>org.openscada</groupId>
+			<artifactId>superParent</artifactId>
+			<version>${project.version}</version>
+			<type>javadoc</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-p2</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.openscada.p2</groupId>
+									<artifactId>org.openscada</artifactId>
+									<version>${project.version}</version>
+									<type>zip</type>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${project.build.directory}/zip</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-javadoc</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.openscada</groupId>
+									<artifactId>superParent</artifactId>
+									<version>${project.version}</version>
+									<type>javadoc</type>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${project.build.directory}/jd</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<mkdir dir="${project.build.directory}/p2" />
+								<unzip dest="${project.build.directory}/p2">
+									<fileset dir="${project.build.directory}/zip" includes="*.zip" />
+								</unzip>
+								<mkdir dir="${project.build.directory}/javadoc" />
+								<copy todir="${project.build.directory}/javadoc">
+									<fileset dir="${project.build.directory}/jd" includes="*-javadoc.jar" />
+									<mapper type="merge" to="org.openscada-javadoc.jar" />
+								</copy>
+								<unzip dest="${project.build.directory}/javadoc">
+									<fileset dir="${project.build.directory}/jd" includes="*-javadoc.jar" />
+								</unzip>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

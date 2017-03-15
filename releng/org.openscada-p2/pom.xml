@@ -11,27 +11,25 @@
 
 	<groupId>org.openscada.p2</groupId>
 	<artifactId>org.openscada</artifactId>
-	
-	<packaging>eclipse-repository</packaging>
-	
-	<profiles>
-		<profile>
-			<id>deploy</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
 
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-deploy-plugin</artifactId>
-						<configuration>
-							<skip>false</skip>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+	<packaging>eclipse-repository</packaging>
+
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+			</extension>
+		</extensions>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
