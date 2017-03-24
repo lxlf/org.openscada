@@ -18,6 +18,8 @@
 		<openscada.releaseType>nightly</openscada.releaseType>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 
@@ -33,9 +35,11 @@
 		<module>../../utgard/org.openscada.utgard-parent</module>
 		<module>../../core/org.openscada.atlantis-parent</module>
 		<module>../../ide/org.openscada.ide-parent</module>
-		<module>deploy</module>
+		<module>../org.openscada-p2</module>
+		<!-- 
 		<module>deb</module>
 		<module>rpm</module>
+		 -->
 	</modules>
 
 	<build>
@@ -44,17 +48,17 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.8</version>
+					<version>3.0.0</version>
+					<executions>
+						<execution>
+							<phase>package</phase>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.8.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>rpm-maven-plugin</artifactId>
-					<version>2.1.5</version>
+					<version>2.8.2</version>
 				</plugin>
 				<plugin>
 					<artifactId>jdeb</artifactId>
@@ -62,9 +66,9 @@
 					<version>1.5</version>
 				</plugin>
 				<plugin>
-					<groupId>de.dentrassi.build</groupId>
-					<artifactId>apt-repo</artifactId>
-					<version>0.0.2</version>
+					<groupId>de.dentrassi.maven</groupId>
+					<artifactId>rpm</artifactId>
+					<version>0.8.0</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -161,35 +165,24 @@
 
 			<!-- java doc -->
 
-			<!-- 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10</version>
+				<version>2.10.4</version>
 				<executions>
 					<execution>
 						<goals>
 							<goal>aggregate</goal>
 							<goal>aggregate-jar</goal>
 						</goals>
-						<phase>verify</phase>
+						<phase>prepare-package</phase>
 					</execution>
 				</executions>
 				<configuration>
 					<doctitle>openSCADA ${project.version}</doctitle>
-					<excludePackageNames>ndr:jcifs:rpc:org.apache:org.jinterop:org.odftoolkit:org.snmp4j:org.openscada.configuration</excludePackageNames>
+					<excludePackageNames>ndr:jcifs:rpc:org.apache:org.jinterop:org.odftoolkit:org.snmp4j:org.openscada.configuration:org.opcfoundation</excludePackageNames>
 					<finalName>org.openscada</finalName>
 					<additionalparam>-Xdoclint:none</additionalparam>
-				</configuration>
-			</plugin>
-			 -->
-
-			<!-- in general, don't deploy -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -280,6 +273,26 @@
 					<id>openscada-drone</id>
 					<name>openSCADA Maven Repository</name>
 					<url>https://thedrone.packagedrone.org/maven/openscada-1.5-integration</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+
+		<profile>
+			<id>test-staging</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<properties>
+				<openscada.releaseType>integration</openscada.releaseType>
+				<repo.upload>true</repo.upload>
+			</properties>
+
+			<distributionManagement>
+				<downloadUrl>https://thedrone.packagedrone.org/maven/cd6c98c1-e834-49bf-9ea9-2bd05f96a979</downloadUrl>
+				<repository>
+					<id>pdrone.cd6c98c1-e834-49bf-9ea9-2bd05f96a979</id>
+					<url>https://thedrone.packagedrone.org/maven/cd6c98c1-e834-49bf-9ea9-2bd05f96a979</url>
 				</repository>
 			</distributionManagement>
 		</profile>

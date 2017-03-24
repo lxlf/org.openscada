@@ -31,8 +31,7 @@
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>copy-p2</id>
-						<phase>compile</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>unpack</goal>
 						</goals>
@@ -53,67 +52,49 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>rpm-maven-plugin</artifactId>
+				<groupId>de.dentrassi.maven</groupId>
+				<artifactId>rpm</artifactId>
 				<executions>
 					<execution>
-						<id>generate-rpm</id>
 						<phase>package</phase>
 						<goals>
-							<goal>attached-rpm</goal>
+							<goal>rpm</goal>
 						</goals>
+						<configuration>
+							<attach>true</attach>
+							<skipSigning>true</skipSigning>
+							<group>Application/Misc</group>
+							<rulesets>
+								<ruleset>
+									<id>my-default</id>
+									<rules>
+										<rule>
+											<when>
+												<type>directory</type>
+											</when>
+											<mode>0755</mode>
+										</rule>
+									</rules>
+								</ruleset>
+							</rulesets>
+							<entries>
+								<entry>
+									<name>/usr/share/eclipsescada/p2/org.openscada</name>
+									<collect>
+										<from>target/data</from>
+										<directories>true</directories>
+									</collect>
+									<ruleset>my-default</ruleset>
+								</entry>
+							</entries>
+							<obsoletes>
+								<obsolete>org.openscada.p2.repo.main</obsolete>
+							</obsoletes>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<license>EPL</license>
-					<distribution>openSCADA</distribution>
-					<group>Application/System</group>
-					<packager>openSCADA</packager>
-					<prefix>/usr/local</prefix>
-					<obsoletes>
-						<obsolete>org.openscada.p2.repo.main</obsolete>
-					</obsoletes>
-					<defineStatements>
-						<defineStatement>_unpackaged_files_terminate_build 0</defineStatement>
-					</defineStatements>
-					<mappings>
-						<mapping>
-							<directory>/usr/share/eclipsescada/p2/org.openscada</directory>
-							<filemode>0755</filemode>
-							<username>root</username>
-							<groupname>root</groupname>
-							<sources>
-								<source>
-									<location>${project.build.directory}/data</location>
-								</source>
-							</sources>
-						</mapping>
-					</mappings>
-				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
-	
-	<profiles>
-		<profile>
-			<id>upload-rpm</id>
-			<activation>
-				<property>
-					<name>repo.upload</name>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-deploy-plugin</artifactId>
-						<configuration>
-							<skip>false</skip>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+
 </project>

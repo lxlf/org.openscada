@@ -9,25 +9,23 @@
 		<version>1.5.0-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-
-	<groupId>org.openscada</groupId>
-	<artifactId>rpm</artifactId>
-	<packaging>pom</packaging>
-
+	
 	<modules>
-		<module>p2</module>
-		<module>postgres</module>
+		<module>deb</module>
+		<module>rpm</module>
 	</modules>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<configuration>
-					<skip>false</skip>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<groupId>org.openscada</groupId>
+	<artifactId>deploy</artifactId>
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openscada.p2</groupId>
+			<artifactId>org.openscada</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+		</dependency>
+	</dependencies>
+
 </project>

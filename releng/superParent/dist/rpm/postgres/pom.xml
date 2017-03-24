@@ -5,14 +5,14 @@
 
 	<parent>
 		<groupId>org.openscada</groupId>
-		<artifactId>deb</artifactId>
+		<artifactId>rpm</artifactId>
 		<version>1.5.0-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 
-	<groupId>org.openscada.deb</groupId>
+	<groupId>org.openscada.rpm</groupId>
 	<artifactId>org.openscada.jdbc.postgresql</artifactId>
-	<packaging>deb</packaging>
+	<packaging>pom</packaging>
 
 	<build>
 
@@ -22,8 +22,7 @@
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>copy-postgres</id>
-						<phase>compile</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>copy</goal>
 						</goals>
@@ -40,47 +39,48 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			
 			<plugin>
-				<artifactId>jdeb</artifactId>
-				<groupId>org.vafer</groupId>
-				<configuration>
-					<snapshotExpand>true</snapshotExpand>
-					<dataSet>
-						<data>
-							<src>${project.build.directory}/jar</src>
-							<type>directory</type>
-							<includes>*.jar</includes>
-							<mapper>
-								<type>perm</type>
-								<prefix>/usr/jar</prefix>
-							</mapper>
-						</data>
-					</dataSet>
-				</configuration>
+				<groupId>de.dentrassi.maven</groupId>
+				<artifactId>rpm</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>rpm</goal>
+						</goals>
+						<configuration>
+							<attach>true</attach>
+							<group>Application/Misc</group>
+							<skipSigning>true</skipSigning>
+							<rulesets>
+								<ruleset>
+									<id>my-default</id>
+									<rules>
+										<rule>
+											<when>
+												<type>directory</type>
+											</when>
+											<mode>0755</mode>
+										</rule>
+									</rules>
+								</ruleset>
+							</rulesets>
+							<entries>
+								<entry>
+									<name>/usr/jar</name>
+									<collect>
+										<from>${project.build.directory}/jar</from>
+										<directories>true</directories>
+									</collect>
+									<ruleset>my-default</ruleset>
+								</entry>
+							</entries>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>deploy</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-deploy-plugin</artifactId>
-						<configuration>
-							<skip>false</skip>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 </project>
