@@ -1,0 +1,6 @@
+language: java
+
+script:
+  - cd releng/superParent
+  - mvn clean
+  - mvn install
