@@ -47,7 +47,7 @@ public class CommandValue<T>
     @Override
     public String toString ()
     {
-        return String.format ( "[%s: %s - %4$tF %4$tH:%4$tM:%4$tS.%4$tL %4$tZ %4$tz", this.value.getClass ().getSimpleName (), this.value, new Date ( this.timestamp ) );
+        return String.format ( "[%s: %s - %3$tF %3$tH:%3$tM:%3$tS.%3$tL %3$tZ %3$tz", this.value.getClass ().getSimpleName (), this.value, new Date ( this.timestamp ) );
     }
 
     @Override
