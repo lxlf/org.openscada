@@ -107,6 +107,7 @@ public class CAConfigurationFactory implements ConfigurationFactory, org.eclipse
         final DataModuleOptions.Builder builder = new DataModuleOptions.Builder ();
 
         builder.setIgnoreBackgroundScan ( cfg.getBoolean ( "ignoreBackgroundScan", true ) );
+        builder.setDelayStart ( cfg.getBoolean ( "delayStart", false ) );
 
         return builder.build ();
     }

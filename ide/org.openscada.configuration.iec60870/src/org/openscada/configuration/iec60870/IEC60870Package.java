@@ -768,13 +768,22 @@ public interface IEC60870Package extends EPackage
     int CLIENT_DATA_MODULE_OPTIONS__IGNORE_BACKGROUND_SCAN = 0;
 
     /**
+     * The feature id for the '<em><b>Delay Start</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLIENT_DATA_MODULE_OPTIONS__DELAY_START = 1;
+
+    /**
      * The number of structural features of the '<em>Client Data Module Options</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CLIENT_DATA_MODULE_OPTIONS_FEATURE_COUNT = 1;
+    int CLIENT_DATA_MODULE_OPTIONS_FEATURE_COUNT = 2;
 
     /**
      * The number of operations of the '<em>Client Data Module Options</em>' class.
@@ -1610,6 +1619,17 @@ public interface IEC60870Package extends EPackage
     EAttribute getClientDataModuleOptions_IgnoreBackgroundScan ();
 
     /**
+     * Returns the meta object for the attribute '{@link org.openscada.configuration.iec60870.ClientDataModuleOptions#isDelayStart <em>Delay Start</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Delay Start</em>'.
+     * @see org.openscada.configuration.iec60870.ClientDataModuleOptions#isDelayStart()
+     * @see #getClientDataModuleOptions()
+     * @generated
+     */
+    EAttribute getClientDataModuleOptions_DelayStart ();
+
+    /**
      * Returns the meta object for class '{@link org.openscada.configuration.iec60870.IEC60870Driver <em>Driver</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2180,6 +2200,14 @@ public interface IEC60870Package extends EPackage
          * @generated
          */
         EAttribute CLIENT_DATA_MODULE_OPTIONS__IGNORE_BACKGROUND_SCAN = eINSTANCE.getClientDataModuleOptions_IgnoreBackgroundScan ();
+
+        /**
+         * The meta object literal for the '<em><b>Delay Start</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CLIENT_DATA_MODULE_OPTIONS__DELAY_START = eINSTANCE.getClientDataModuleOptions_DelayStart ();
 
         /**
          * The meta object literal for the '{@link org.openscada.configuration.iec60870.impl.IEC60870DriverImpl <em>Driver</em>}' class.

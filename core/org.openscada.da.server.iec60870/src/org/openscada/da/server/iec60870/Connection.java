@@ -145,7 +145,7 @@ public class Connection
         this.executor = executor;
 
         this.dataModuleOptions = configuration.getDataModuleOptions ();
-        this.handler = new DataProcessor ( executor, this.dataListener );
+        this.handler = new DataProcessor ( executor, this.dataListener, configuration.getDataModuleOptions ().isDelayStart () );
         final DataModule dataModule = new DataModule ( this.handler, this.dataModuleOptions );
 
         this.protocolOptions = configuration.getProtocolOptions ();
@@ -505,5 +505,13 @@ public class Connection
     public void reconnect ()
     {
         this.client.reconnect ();
+    }
+
+    public void requestStartData ()
+    {
+        if ( this.dataModuleOptions.isDelayStart () )
+        {
+            this.client.requestStartData ();
+        }
     }
 }

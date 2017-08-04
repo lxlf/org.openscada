@@ -47,4 +47,13 @@ public class DataModule implements ClientModule
     {
     }
 
+    @Override
+    public void requestStartData ()
+    {
+        if ( this.dataHandler != null )
+        {
+            this.dataHandler.requestStartData ();
+        }
+    }
+
 }

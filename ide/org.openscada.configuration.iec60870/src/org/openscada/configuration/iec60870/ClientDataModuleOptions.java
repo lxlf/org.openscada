@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.openscada.configuration.iec60870.ClientDataModuleOptions#isIgnoreBackgroundScan <em>Ignore Background Scan</em>}</li>
+ *   <li>{@link org.openscada.configuration.iec60870.ClientDataModuleOptions#isDelayStart <em>Delay Start</em>}</li>
  * </ul>
  *
  * @see org.openscada.configuration.iec60870.IEC60870Package#getClientDataModuleOptions()
@@ -60,5 +61,33 @@ public interface ClientDataModuleOptions extends EObject
      * @generated
      */
     void setIgnoreBackgroundScan ( boolean value );
+
+    /**
+     * Returns the value of the '<em><b>Delay Start</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Delay Start</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Delay Start</em>' attribute.
+     * @see #setDelayStart(boolean)
+     * @see org.openscada.configuration.iec60870.IEC60870Package#getClientDataModuleOptions_DelayStart()
+     * @model default="false" required="true"
+     *        annotation="http://eclipse.org/SCADA/CA/Descriptor name='ignoreBackgroundScan'"
+     * @generated
+     */
+    boolean isDelayStart ();
+
+    /**
+     * Sets the value of the '{@link org.openscada.configuration.iec60870.ClientDataModuleOptions#isDelayStart <em>Delay Start</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Delay Start</em>' attribute.
+     * @see #isDelayStart()
+     * @generated
+     */
+    void setDelayStart ( boolean value );
 
 } // ClientDataModuleOptions

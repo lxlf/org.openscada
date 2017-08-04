@@ -42,17 +42,55 @@ public class DataProcessor implements DataHandler
 
     private final Executor executor;
 
+    private boolean delayStart;
+
+    private Runnable requestStartDataRunner;
+
+    private Runnable interrogationRunner;
+
     public DataProcessor ( final Executor executor, final DataListener listener )
     {
         this.executor = executor;
         this.listener = listener;
+        this.delayStart = false;
+    }
+
+    public DataProcessor ( Executor executor, DataListener dataListener, boolean delayStart )
+    {
+        this.executor = executor;
+        this.listener = dataListener;
+        this.delayStart = delayStart;
     }
 
     @Override
     public void activated ( final DataModuleContext dataModuleContext, final ChannelHandlerContext ctx )
     {
-        dataModuleContext.requestStartData ();
-        dataModuleContext.startInterrogation ( ASDUAddress.BROADCAST, QualifierOfInterrogation.GLOBAL );
+        // wrap both in closures, so we don't have to store it in a local field
+        this.requestStartDataRunner = new Runnable () {
+            @Override
+            public void run ()
+            {
+                dataModuleContext.requestStartData ();
+            }
+        };
+        this.interrogationRunner = new Runnable () {
+            @Override
+            public void run ()
+            {
+                dataModuleContext.startInterrogation ( ASDUAddress.BROADCAST, QualifierOfInterrogation.GLOBAL );
+            }
+        };
+        if ( !delayStart )
+        {
+            try
+            {
+                this.requestStartDataRunner.run ();
+            }
+            finally
+            {
+                this.requestStartDataRunner = null;
+            }
+        }
     }
 
     @Override
@@ -65,11 +103,25 @@ public class DataProcessor implements DataHandler
                 DataProcessor.this.listener.started ();
             };
         } );
+        if ( this.interrogationRunner != null )
+        {
+            try
+            {
+                this.interrogationRunner.run ();
+            }
+            finally
+            {
+                this.interrogationRunner = null;
+            }
+        }
     }
 
     @Override
     public void disconnected ()
     {
+        this.requestStartDataRunner = null;
+        this.interrogationRunner = null;
+     
         this.executor.execute ( new Runnable () {
             @Override
             public void run ()
@@ -211,7 +263,6 @@ public class DataProcessor implements DataHandler
         }
     }
 
-
     @Override
     public void process ( final MeasuredValueNormalizedTimeSingle msg )
     {
@@ -239,6 +290,22 @@ public class DataProcessor implements DataHandler
         {
             fireEntry ( msg.getHeader ().getAsduAddress (), InformationObjectAddress.valueOf ( i ), value );
             i++;
+        }
+    }
+
+    @Override
+    public void requestStartData ()
+    {
+        if ( this.requestStartDataRunner != null )
+        {
+            try
+            {
+                this.requestStartDataRunner.run ();
+            }
+            finally
+            {
+                this.requestStartDataRunner = null;
+            }
         }
     }
 }

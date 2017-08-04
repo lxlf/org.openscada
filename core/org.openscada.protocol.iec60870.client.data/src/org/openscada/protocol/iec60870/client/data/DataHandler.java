@@ -34,6 +34,8 @@ public interface DataHandler
 
     public void started ();
 
+    public void requestStartData ();
+
     public void disconnected ();
 
     public void process ( SinglePointInformationTimeSingle msg );

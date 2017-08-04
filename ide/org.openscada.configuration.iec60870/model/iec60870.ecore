@@ -209,6 +209,12 @@
         <details key="name" value="ignoreBackgroundScan"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="delayStart" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false">
+      <eAnnotations source="http://eclipse.org/SCADA/CA/Descriptor">
+        <details key="name" value="ignoreBackgroundScan"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IEC60870Driver" eSuperTypes="../../org.eclipse.scada.configuration.infrastructure/model/infrastructure.ecore#//AbstractEquinoxDriver">
     <eStructuralFeatures xsi:type="ecore:EReference" name="devices" upperBound="-1"

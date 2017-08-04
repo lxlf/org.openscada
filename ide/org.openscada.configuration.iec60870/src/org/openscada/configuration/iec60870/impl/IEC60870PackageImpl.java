@@ -771,6 +771,16 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getClientDataModuleOptions_DelayStart ()
+    {
+        return (EAttribute)clientDataModuleOptionsEClass.getEStructuralFeatures ().get ( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public EClass getIEC60870Driver ()
     {
@@ -993,6 +1003,7 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
 
         clientDataModuleOptionsEClass = createEClass ( CLIENT_DATA_MODULE_OPTIONS );
         createEAttribute ( clientDataModuleOptionsEClass, CLIENT_DATA_MODULE_OPTIONS__IGNORE_BACKGROUND_SCAN );
+        createEAttribute ( clientDataModuleOptionsEClass, CLIENT_DATA_MODULE_OPTIONS__DELAY_START );
 
         iec60870DriverEClass = createEClass ( IEC60870_DRIVER );
         createEReference ( iec60870DriverEClass, IEC60870_DRIVER__DEVICES );
@@ -1118,6 +1129,7 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
 
         initEClass ( clientDataModuleOptionsEClass, ClientDataModuleOptions.class, "ClientDataModuleOptions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEAttribute ( getClientDataModuleOptions_IgnoreBackgroundScan (), ecorePackage.getEBoolean (), "ignoreBackgroundScan", "false", 1, 1, ClientDataModuleOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+        initEAttribute ( getClientDataModuleOptions_DelayStart (), ecorePackage.getEBoolean (), "delayStart", "false", 1, 1, ClientDataModuleOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
 
         initEClass ( iec60870DriverEClass, IEC60870Driver.class, "IEC60870Driver", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEReference ( getIEC60870Driver_Devices (), this.getIEC60870Device (), null, "devices", null, 0, -1, IEC60870Driver.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
@@ -1256,6 +1268,8 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         addAnnotation ( getDataModuleOptions_TimestampsForFloat (), source, new String[] { "name", "withTimestamp.float" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation ( getClientDataModuleOptions_IgnoreBackgroundScan (), source, new String[] { "name", "ignoreBackgroundScan" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation ( getClientDataModuleOptions_DelayStart (), source, new String[] { "name", "ignoreBackgroundScan" //$NON-NLS-1$ //$NON-NLS-2$
         } );
     }
 
