@@ -114,7 +114,9 @@ public class WriteRequest implements Task<WriteResponse>
 
         // call
 
+        logger.trace ( "starting call for write {}", write );
         final org.opcfoundation.webservices.xmlda._1.WriteResponse result = service.write ( write );
+        logger.trace ( "finished call for write {}", write );
 
         // build response
 
