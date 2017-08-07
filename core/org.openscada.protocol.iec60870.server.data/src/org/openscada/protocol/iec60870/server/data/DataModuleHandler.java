@@ -31,10 +31,13 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.util.AttributeKey;
 
 public class DataModuleHandler extends AbstractModuleHandler
 {
     private final static Logger logger = LoggerFactory.getLogger ( DataModuleHandler.class );
+
+    private final AttributeKey<Runnable> startTimersKey = AttributeKey.valueOf ( "startTimers" );
 
     private final DataModel dataModel;
 
@@ -78,6 +81,12 @@ public class DataModuleHandler extends AbstractModuleHandler
         this.messageChannel.addSource ( this.source );
 
         this.spontHandler = new DataListenerImpl ( this.source );
+
+        final Runnable startTimers = ctx.attr ( startTimersKey ).getAndRemove ();
+        if ( startTimers != null )
+        {
+            startTimers.run ();
+        }
 
         super.channelActive ( ctx );
     }

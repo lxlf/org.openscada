@@ -35,9 +35,12 @@ import org.openscada.protocol.iec60870.asdu.types.QualifierOfInterrogation;
 import org.openscada.protocol.iec60870.asdu.types.Value;
 
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.util.AttributeKey;
 
 public class DataProcessor implements DataHandler
 {
+    private final AttributeKey<Runnable> startTimersKey = AttributeKey.valueOf ( "startTimers" );
+
     private final DataListener listener;
 
     private final Executor executor;
@@ -70,6 +73,11 @@ public class DataProcessor implements DataHandler
             @Override
             public void run ()
             {
+                final Runnable startTimers = ctx.attr ( startTimersKey ).getAndRemove ();
+                if ( startTimers != null )
+                {
+                    startTimers.run ();
+                }
                 dataModuleContext.requestStartData ();
             }
         };
@@ -121,7 +129,7 @@ public class DataProcessor implements DataHandler
     {
         this.requestStartDataRunner = null;
         this.interrogationRunner = null;
-     
+
         this.executor.execute ( new Runnable () {
             @Override
             public void run ()

@@ -28,6 +28,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
 import io.netty.handler.codec.DecoderException;
 import io.netty.handler.codec.EncoderException;
+import io.netty.util.AttributeKey;
 import io.netty.util.ReferenceCountUtil;
 
 public class MessageChannel extends ChannelDuplexHandler
@@ -61,6 +62,8 @@ public class MessageChannel extends ChannelDuplexHandler
     private final MessageManager manager;
 
     private final List<MessageSource> sources = new LinkedList<> ();
+    
+    private final AttributeKey<Runnable> startTimers = AttributeKey.valueOf ( "startTimers" );
 
     private static class WriteEvent
     {
@@ -112,8 +115,14 @@ public class MessageChannel extends ChannelDuplexHandler
             }
         } );
 
-        this.timer1.start ( this.options.getTimeout1 () );
-        this.timer3.start ( this.options.getTimeout3 () );
+        this.ctx.attr ( startTimers ).set ( new Runnable() {
+            @Override
+            public void run ()
+            {
+                MessageChannel.this.timer1.start ( MessageChannel.this.options.getTimeout1 () );
+                MessageChannel.this.timer3.start ( MessageChannel.this.options.getTimeout3 () );
+            }
+        } );
 
         super.channelActive ( ctx );
     }
