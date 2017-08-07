@@ -212,7 +212,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="delayStart" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false">
       <eAnnotations source="http://eclipse.org/SCADA/CA/Descriptor">
-        <details key="name" value="ignoreBackgroundScan"/>
+        <details key="name" value="delayStart"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

@@ -75,7 +75,7 @@ public interface ClientDataModuleOptions extends EObject
      * @see #setDelayStart(boolean)
      * @see org.openscada.configuration.iec60870.IEC60870Package#getClientDataModuleOptions_DelayStart()
      * @model default="false" required="true"
-     *        annotation="http://eclipse.org/SCADA/CA/Descriptor name='ignoreBackgroundScan'"
+     *        annotation="http://eclipse.org/SCADA/CA/Descriptor name='delayStart'"
      * @generated
      */
     boolean isDelayStart ();

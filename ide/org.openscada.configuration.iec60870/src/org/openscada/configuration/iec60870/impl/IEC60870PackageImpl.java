@@ -1269,7 +1269,7 @@ public class IEC60870PackageImpl extends EPackageImpl implements IEC60870Package
         } );
         addAnnotation ( getClientDataModuleOptions_IgnoreBackgroundScan (), source, new String[] { "name", "ignoreBackgroundScan" //$NON-NLS-1$ //$NON-NLS-2$
         } );
-        addAnnotation ( getClientDataModuleOptions_DelayStart (), source, new String[] { "name", "ignoreBackgroundScan" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation ( getClientDataModuleOptions_DelayStart (), source, new String[] { "name", "delayStart" //$NON-NLS-1$ //$NON-NLS-2$
         } );
     }
 
