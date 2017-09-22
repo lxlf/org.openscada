@@ -165,6 +165,7 @@
 
 			<!-- java doc -->
 
+			<!-- 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -185,6 +186,7 @@
 					<additionalparam>-Xdoclint:none</additionalparam>
 				</configuration>
 			</plugin>
+			 -->
 		</plugins>
 
 	</build>
@@ -268,11 +270,11 @@
 			</properties>
 
 			<distributionManagement>
-				<downloadUrl>https://thedrone.packagedrone.org/maven/openscada-1.5-integration</downloadUrl>
+				<downloadUrl>http://thedrone.packagedrone.org/maven/openscada-1.5-integration</downloadUrl>
 				<repository>
-					<id>openscada-drone</id>
+					<id>openscada-integration</id>
 					<name>openSCADA Maven Repository</name>
-					<url>https://thedrone.packagedrone.org/maven/openscada-1.5-integration</url>
+					<url>http://thedrone.packagedrone.org/maven/openscada-1.5-integration</url>			
 				</repository>
 			</distributionManagement>
 		</profile>

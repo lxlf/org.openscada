@@ -16,8 +16,12 @@ install:
   - hash -r
 
 script:
-  - cd releng/superParent
-  - travis_wait mvn clean install
+  - pushd releng/superParent
+  - travis_wait mvn -s ../../settings.xml -P integration clean install deploy
+  - popd
+  - pushd  releng/superParent/dist
+  - travis_wait mvn -s ../../../settings.xml -P integration clean install deploy
+  - popd
 
 # The following upgrades Java during the build in
 # order to work around an older Java 8 compiler issue
