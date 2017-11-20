@@ -134,7 +134,7 @@ public class Connection
 
     private final DataModuleOptions dataModuleOptions;
 
-    private final Map<String, CommandMessage> itemTypes;
+    private final Map<String, QualifiedCommandMessage> itemTypes;
 
     public Connection ( final String id, final Hive hive, final Executor executor, final ConnectionConfiguration configuration )
     {
@@ -334,13 +334,13 @@ public class Connection
         {
             csa = (byte)0;
         }
-        CommandMessage cm = this.itemTypes.get ( makeLocalId ( commonAddress, objectAddress ) );
+        final QualifiedCommandMessage cm = this.itemTypes.get ( makeLocalId ( commonAddress, objectAddress ) );
 
         final ASDUHeader header = new ASDUHeader ( new CauseOfTransmission ( StandardCause.ACTIVATED, csa ), commonAddress );
 
         if ( cm != null )
         {
-            return cm.createMessage ( header, objectAddress, value, System.currentTimeMillis () );
+            return cm.getCommandMessage ().createMessage ( header, objectAddress, value, System.currentTimeMillis (), cm.getQualifierOfCommand () );
         }
         else if ( value.isString () && value.asString ( "" ).startsWith ( "C_S" ) )
         {

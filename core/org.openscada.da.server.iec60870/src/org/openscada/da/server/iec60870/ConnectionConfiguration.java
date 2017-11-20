@@ -27,9 +27,9 @@ public class ConnectionConfiguration
 
     private final DataModuleOptions dataModuleOptions;
 
-    private final Map<String, CommandMessage> itemTypes;
+    private final Map<String, QualifiedCommandMessage> itemTypes;
 
-    public ConnectionConfiguration ( final String host, final int port, final ProtocolOptions protocolOptions, final DataModuleOptions dataModuleOptions, final Map<String, CommandMessage> itemTypes )
+    public ConnectionConfiguration ( final String host, final int port, final ProtocolOptions protocolOptions, final DataModuleOptions dataModuleOptions, final Map<String, QualifiedCommandMessage> itemTypes )
     {
         this.host = host;
         this.port = port;
@@ -64,7 +64,7 @@ public class ConnectionConfiguration
         return this.dataModuleOptions;
     }
 
-    public Map<String, CommandMessage> getItemTypes ()
+    public Map<String, QualifiedCommandMessage> getItemTypes ()
     {
         return Collections.unmodifiableMap ( itemTypes );
     }

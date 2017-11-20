@@ -37,26 +37,26 @@ public enum CommandMessage
         return type;
     }
 
-    public ValueCommandMessage createMessage ( ASDUHeader header, InformationObjectAddress objectAddress, Variant value, long timestamp )
+    public ValueCommandMessage createMessage ( ASDUHeader header, InformationObjectAddress objectAddress, Variant value, long timestamp, byte qualifierOfCommand )
     {
         switch ( this )
         {
             case C_SC_NA_1:
-                return new SingleCommand ( header, objectAddress, value.asBoolean ( false ) );
+                return new SingleCommand ( header, objectAddress, value.asBoolean ( false ), qualifierOfCommand, true );
             case C_SC_TA_1:
-                return new SingleCommandTime ( header, objectAddress, new CommandValue<Boolean> ( value.asBoolean ( false ), timestamp ) );
+                return new SingleCommandTime ( header, objectAddress, new CommandValue<Boolean> ( value.asBoolean ( false ), timestamp ), qualifierOfCommand, true );
             case C_SE_NA_1:
-                return new SetPointCommandNormalizedValue ( header, objectAddress, value.asDouble ( 0.0 ) );
+                return new SetPointCommandNormalizedValue ( header, objectAddress, value.asDouble ( 0.0 ), qualifierOfCommand, true );
             case C_SE_TA_1:
-                return new SetPointCommandNormalizedValueTime ( header, objectAddress, new CommandValue<Double> ( value.asDouble ( 0.0 ), timestamp ) );
+                return new SetPointCommandNormalizedValueTime ( header, objectAddress, new CommandValue<Double> ( value.asDouble ( 0.0 ), timestamp ), qualifierOfCommand, true );
             case C_SE_NB_1:
-                return new SetPointCommandScaledValue ( header, objectAddress, value.asInteger ( 0 ).shortValue () );
+                return new SetPointCommandScaledValue ( header, objectAddress, value.asInteger ( 0 ).shortValue (), qualifierOfCommand, true );
             case C_SE_TB_1:
-                return new SetPointCommandScaledValueTime ( header, objectAddress, new CommandValue<Short> ( value.asInteger ( 0 ).shortValue (), timestamp ) );
+                return new SetPointCommandScaledValueTime ( header, objectAddress, new CommandValue<Short> ( value.asInteger ( 0 ).shortValue (), timestamp ), qualifierOfCommand, true );
             case C_SE_NC_1:
-                return new SetPointCommandShortFloatingPoint ( header, objectAddress, value.asDouble ( 0.0 ).floatValue () );
+                return new SetPointCommandShortFloatingPoint ( header, objectAddress, value.asDouble ( 0.0 ).floatValue (), qualifierOfCommand, true );
             case C_SE_TC_1:
-                return new SetPointCommandShortFloatingPointTime ( header, objectAddress, new CommandValue<Float> ( value.asDouble ( 0.0 ).floatValue (), timestamp ) );
+                return new SetPointCommandShortFloatingPointTime ( header, objectAddress, new CommandValue<Float> ( value.asDouble ( 0.0 ).floatValue (), timestamp ), qualifierOfCommand, true );
         }
         throw new IllegalArgumentException ( String.format ( "could not create message for %s-%s value %s", header, objectAddress, value ) );
     }
@@ -78,6 +78,15 @@ public enum CommandMessage
         {
             timestamp = System.currentTimeMillis ();
         }
-        return cm.createMessage ( header, objectAddress, Variant.valueOf ( parts[1] ), timestamp );
+        final byte qualifierOfCommand;
+        if ( parts.length > 3 )
+        {
+            qualifierOfCommand = Byte.parseByte ( parts[3] );
+        }
+        else
+        {
+            qualifierOfCommand = 0;
+        }
+        return cm.createMessage ( header, objectAddress, Variant.valueOf ( parts[1] ), timestamp, qualifierOfCommand );
     }
 }

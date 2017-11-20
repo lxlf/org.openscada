@@ -22,6 +22,7 @@ import org.eclipse.scada.sec.UserInformation;
 import org.openscada.core.common.iec60870.Configurations;
 import org.openscada.da.server.iec60870.CommandMessage;
 import org.openscada.da.server.iec60870.ConnectionConfiguration;
+import org.openscada.da.server.iec60870.QualifiedCommandMessage;
 import org.openscada.protocol.iec60870.ProtocolOptions.Builder;
 import org.openscada.protocol.iec60870.client.data.DataModuleOptions;
 import org.osgi.framework.BundleContext;
@@ -85,13 +86,24 @@ public class CAConfigurationFactory implements ConfigurationFactory, org.eclipse
         final Builder builder = Configurations.parseProtocolOptions ( cfg.getPrefixedHelper ( "protocol." ) );
         final DataModuleOptions dataModuleOptions = parseDataModuleOptions ( cfg.getPrefixedHelper ( "dataModule." ) );
 
-        final Map<String, CommandMessage> itemTypes = new HashMap<> ();
+        final Map<String, QualifiedCommandMessage> itemTypes = new HashMap<> ();
         for ( final Entry<String, String> entry : cfg.getPrefixed ( "itemType." ).entrySet () )
         {
             try
             {
-                CommandMessage cm = CommandMessage.valueOf ( entry.getValue () );
-                itemTypes.put ( entry.getKey (), cm );
+                final QualifiedCommandMessage qcm;
+                if ( entry.getValue ().contains ( "#" ) )
+                {
+                    String[] parts = entry.getValue ().split ( "#" );
+                    final CommandMessage cm = CommandMessage.valueOf ( parts[0] );
+                    qcm = new QualifiedCommandMessage ( cm, Byte.parseByte ( parts[1] ) );
+                }
+                else
+                {
+                    final CommandMessage cm = CommandMessage.valueOf ( entry.getValue () );
+                    qcm = new QualifiedCommandMessage ( cm );
+                }
+                itemTypes.put ( entry.getKey (), qcm );
             }
             catch ( Exception e )
             {
