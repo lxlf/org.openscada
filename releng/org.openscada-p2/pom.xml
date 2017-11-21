@@ -58,7 +58,7 @@
 						<configuration>
 							<target>
 								<delete>
-									<fileset dir="./target" includes="**/*.*" />
+									<fileset dir="./target" includes="**/*.*" includeemptydirs="true" />
 								</delete>
 							</target>
 						</configuration>
