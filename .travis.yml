@@ -17,10 +17,8 @@ install:
 
 script:
   - pushd releng/superParent
-  - travis_wait 30 mvn -s ../../settings.xml -P integration clean install deploy || travis_terminate
-  - popd
-  - pushd  releng/superParent/dist
-  - travis_wait 30 mvn -s ../../../settings.xml -P integration clean install deploy || travis_terminate
+  - travis_wait 15 mvn -s ../../settings.xml -P integration clean || travis_terminate
+  - travis_wait 30 mvn -s ../../settings.xml -P integration install deploy || travis_terminate
   - popd
 
 # The following upgrades Java during the build in
