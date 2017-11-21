@@ -17,7 +17,6 @@ install:
 
 script:
   - pushd releng/superParent
-  - travis_wait 15 mvn -s ../../settings.xml -P integration clean || travis_terminate
   - travis_wait 30 mvn -s ../../settings.xml -P integration install deploy || travis_terminate
   - popd
 
