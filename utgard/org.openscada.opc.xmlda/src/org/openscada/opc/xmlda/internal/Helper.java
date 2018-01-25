@@ -12,16 +12,22 @@ package org.openscada.opc.xmlda.internal;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
+import java.util.EnumSet;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 
@@ -55,9 +61,12 @@ import org.openscada.opc.xmlda.requests.ErrorInformation;
 import org.openscada.opc.xmlda.requests.Limit;
 import org.openscada.opc.xmlda.requests.Quality;
 import org.openscada.opc.xmlda.requests.State;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Helper
 {
+    private final static Logger logger = LoggerFactory.getLogger ( Helper.class );
 
     private Helper ()
     {
@@ -314,8 +323,8 @@ public final class Helper
     }
 
     /**
-     * ArrayOfAnyType is not supported
-     * ArrayOfDateTime is not supported
+     * ArrayOfAnyType and ArrayOfUnsignedByte (which doesn't really exist) is
+     * not supported
      * if parsing of any value fails it will be returned as a string
      * 
      * @param value
@@ -323,150 +332,263 @@ public final class Helper
      */
     public static Object parseStringValue ( final String value, final OpcType opcType )
     {
-        if ( value == null || !value.startsWith ( "[" ) || !value.endsWith ( "]" ) )
+        logger.trace ( "try to convert value: value = {}, opcType = {}", value, opcType );
+        if ( value == null || opcType == null )
         {
+            logger.trace ( "precondition failed" );
             return value;
         }
+        final EnumSet<OpcType> supportedArrayTypes = EnumSet.of ( OpcType.ARRAY_OF_BOOLEAN, OpcType.ARRAY_OF_BYTE, OpcType.ARRAY_OF_DECIMAL, //
+                OpcType.ARRAY_OF_DOUBLE, OpcType.ARRAY_OF_FLOAT, OpcType.ARRAY_OF_INT, OpcType.ARRAY_OF_LONG, //
+                OpcType.ARRAY_OF_SHORT, OpcType.ARRAY_OF_STRING, OpcType.ARRAY_OF_UNSIGNED_INT, //
+                OpcType.ARRAY_OF_UNSIGNED_LONG, OpcType.ARRAY_OF_UNSIGNED_SHORT, OpcType.ARRAY_OF_DATE_TIME );
+        final EnumSet<OpcType> unsupportedArrayTypes = EnumSet.of ( OpcType.ARRAY_OF_ANY_TYPE, OpcType.ARRAY_OF_UNSIGNED_BYTE );
+
         try
         {
-            switch ( opcType )
+            if ( supportedArrayTypes.contains ( opcType ) && value.startsWith ( "[" ) && value.endsWith ( "]" ) )
             {
-                case ARRAY_OF_BOOLEAN:
+                logger.trace ( "try to convert as Array" );
+                switch ( opcType )
                 {
-                    ArrayOfBoolean v = new ArrayOfBoolean ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_BOOLEAN:
                     {
-                        v.getBoolean ().add ( Boolean.parseBoolean ( el ) );
+                        ArrayOfBoolean v = new ArrayOfBoolean ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getBoolean ().add ( toBoolean ( el ) );
+                        }
+                        return v;
                     }
-                    return v;
-                }
-                case ARRAY_OF_BYTE:
-                {
-                    ArrayOfByte v = new ArrayOfByte ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_BYTE:
                     {
-                        v.getByte ().add ( Byte.parseByte ( el ) );
+                        ArrayOfByte v = new ArrayOfByte ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getByte ().add ( Byte.parseByte ( el ) );
+                        }
+                        return v;
                     }
-                    return v;
-                }
-                case ARRAY_OF_DECIMAL:
-                {
-                    ArrayOfDecimal v = new ArrayOfDecimal ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_DECIMAL:
                     {
-                        v.getDecimal ().add ( new BigDecimal ( el ) );
+                        ArrayOfDecimal v = new ArrayOfDecimal ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getDecimal ().add ( new BigDecimal ( el ) );
+                        }
+                        return v;
                     }
-                    return v;
-                }
-                case ARRAY_OF_DOUBLE:
-                {
-                    ArrayOfDouble v = new ArrayOfDouble ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_DOUBLE:
                     {
-                        v.getDouble ().add ( Double.parseDouble ( el ) );
+                        ArrayOfDouble v = new ArrayOfDouble ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getDouble ().add ( Double.parseDouble ( el ) );
+                        }
+                        return v;
                     }
-                    return v;
-                }
-                case ARRAY_OF_FLOAT:
-                {
-                    ArrayOfFloat v = new ArrayOfFloat ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_FLOAT:
                     {
-                        v.getFloat ().add ( Float.parseFloat ( el ) );
+                        ArrayOfFloat v = new ArrayOfFloat ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getFloat ().add ( Float.parseFloat ( el ) );
+                        }
+                        return v;
                     }
-                    return v;
-                }
-                case ARRAY_OF_INT:
-                {
-                    ArrayOfInt v = new ArrayOfInt ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_INT:
                     {
-                        v.getInt ().add ( Integer.parseInt ( el ) );
+                        ArrayOfInt v = new ArrayOfInt ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getInt ().add ( Integer.parseInt ( el ) );
+                        }
+                        return v;
                     }
-                    return v;
-                }
-                case ARRAY_OF_LONG:
-                {
-                    ArrayOfLong v = new ArrayOfLong ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_LONG:
                     {
-                        v.getLong ().add ( Long.parseLong ( el ) );
+                        ArrayOfLong v = new ArrayOfLong ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getLong ().add ( Long.parseLong ( el ) );
+                        }
+                        return v;
                     }
-                    return v;
-                }
-                case ARRAY_OF_SHORT:
-                {
-                    ArrayOfShort v = new ArrayOfShort ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_SHORT:
                     {
-                        v.getShort ().add ( Short.parseShort ( el ) );
+                        ArrayOfShort v = new ArrayOfShort ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getShort ().add ( Short.parseShort ( el ) );
+                        }
+                        return v;
                     }
-                    return v;
-                }
-                case ARRAY_OF_STRING:
-                {
-                    ArrayOfString v = new ArrayOfString ();
-                    v.getString ().addAll ( toStringList ( value ) );
-                }
-                case ARRAY_OF_UNSIGNED_INT:
-                {
-                    ArrayOfUnsignedInt v = new ArrayOfUnsignedInt ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_STRING:
                     {
-                        v.getUnsignedInt ().add ( Long.parseLong ( el ) );
+                        ArrayOfString v = new ArrayOfString ();
+                        v.getString ().addAll ( toStringList ( value ) );
                     }
-                    return v;
-                }
-                case ARRAY_OF_UNSIGNED_LONG:
-                {
-                    ArrayOfUnsignedLong v = new ArrayOfUnsignedLong ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_UNSIGNED_INT:
                     {
-                        v.getUnsignedLong ().add ( new BigInteger ( el ) );
+                        ArrayOfUnsignedInt v = new ArrayOfUnsignedInt ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getUnsignedInt ().add ( Long.parseLong ( el ) );
+                        }
+                        return v;
                     }
-                    return v;
-                }
-                case ARRAY_OF_UNSIGNED_SHORT:
-                {
-                    ArrayOfUnsignedShort v = new ArrayOfUnsignedShort ();
-                    for ( String el : toStringList ( value ) )
+                    case ARRAY_OF_UNSIGNED_LONG:
                     {
-                        v.getUnsignedShort ().add ( Integer.parseInt ( el ) );
+                        ArrayOfUnsignedLong v = new ArrayOfUnsignedLong ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getUnsignedLong ().add ( new BigInteger ( el ) );
+                        }
+                        return v;
                     }
-                    return v;
+                    case ARRAY_OF_UNSIGNED_SHORT:
+                    {
+                        ArrayOfUnsignedShort v = new ArrayOfUnsignedShort ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getUnsignedShort ().add ( Integer.parseInt ( el ) );
+                        }
+                        return v;
+                    }
+                    case ARRAY_OF_DATE_TIME:
+                        ArrayOfDateTime v = new ArrayOfDateTime ();
+                        for ( String el : toStringList ( value ) )
+                        {
+                            v.getDateTime ().add ( toDateTime ( el ) );
+                        }
+                        return v;
+                    default:
+                        logger.warn ( "can not actually happen!" );
+                        break;
                 }
-                case ARRAY_OF_ANY_TYPE:
-                case ARRAY_OF_DATE_TIME:
-                case ARRAY_OF_UNSIGNED_BYTE:
-                case BASE64_BINARY:
-                case BOOLEAN:
-                case BYTE:
-                case DATE:
-                case DATE_TIME:
-                case DECIMAL:
-                case DOUBLE:
-                case DURATION:
-                case FLOAT:
-                case INT:
-                case LONG:
-                case QNAME:
-                case SHORT:
-                case STRING:
-                case TIME:
-                case UNDEFINED:
-                case UNSIGNED_BYTE:
-                case UNSIGNED_INT:
-                case UNSIGNED_LONG:
-                case UNSIGNED_SHORT:
-                default:
-                    break;
+            }
+            else if ( unsupportedArrayTypes.contains ( opcType ) )
+            {
+                logger.warn ( "opcType '{}' is not supported!", opcType );
+                return value;
+            }
+            else
+            {
+                switch ( opcType )
+                {
+                    case BOOLEAN:
+                        return toBoolean ( value );
+                    case BYTE:
+                        return Byte.parseByte ( value );
+                    case DATE:
+                        return toDate ( value );
+                    case DATE_TIME:
+                        return toDateTime ( value );
+                    case DECIMAL:
+                        return new BigDecimal ( value );
+                    case DOUBLE:
+                        return Double.parseDouble ( value );
+                    case DURATION:
+                        return DatatypeFactory.newInstance ().newDuration ( Long.parseLong ( value ) );
+                    case FLOAT:
+                        return Float.parseFloat ( value );
+                    case INT:
+                    case UNSIGNED_SHORT:
+                        return Integer.parseInt ( value );
+                    case LONG:
+                    case UNSIGNED_INT:
+                        return Long.parseLong ( value );
+                    case SHORT:
+                    case UNSIGNED_BYTE:
+                        return Short.parseShort ( value );
+                    case TIME:
+                        return toTime ( value );
+                    case UNSIGNED_LONG:
+                        return new BigInteger ( value );
+                    default:
+                        break;
+                }
             }
         }
         catch ( NumberFormatException e )
         {
+            logger.warn ( "value could not be converted!", e );
             return value;
         }
+        catch ( ParseException e )
+        {
+            logger.warn ( "value could not be converted!", e );
+            return value;
+        }
+        catch ( DatatypeConfigurationException e )
+        {
+            logger.warn ( "value could not be converted!", e );
+            return value;
+        }
+        logger.debug ( "no conversation method applied, returning value as is!" );
         return value;
+    }
+
+    private static XMLGregorianCalendar toDateTime ( String value ) throws ParseException, DatatypeConfigurationException
+    {
+        GregorianCalendar cal = new GregorianCalendar ();
+        cal.setTimeZone ( TimeZone.getTimeZone ( "UTC" ) );
+        if ( value.contains ( "-" ) )
+        {
+            final SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss.SSS" );
+            cal.setTime ( format.parse ( value ) );
+        }
+        else
+        {
+            cal.setTime ( new Date ( Long.parseLong ( value ) ) );
+        }
+        final XMLGregorianCalendar xcal = DatatypeFactory.newInstance ().newXMLGregorianCalendar ( cal );
+        return xcal;
+    }
+
+    private static XMLGregorianCalendar toDate ( String value ) throws ParseException, DatatypeConfigurationException
+    {
+        GregorianCalendar cal = new GregorianCalendar ();
+        cal.setTimeZone ( TimeZone.getTimeZone ( "UTC" ) );
+        if ( value.contains ( "-" ) )
+        {
+            final SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd" );
+            cal.setTime ( format.parse ( value ) );
+        }
+        else
+        {
+            cal.setTime ( new Date ( Long.parseLong ( value ) ) );
+        }
+
+        final XMLGregorianCalendar xcal = DatatypeFactory.newInstance ().newXMLGregorianCalendarDate ( cal.get ( Calendar.YEAR ), cal.get ( Calendar.MONTH ), cal.get ( Calendar.DAY_OF_MONTH ), 0 );
+        return xcal;
+    }
+
+    private static XMLGregorianCalendar toTime ( String value ) throws ParseException, DatatypeConfigurationException
+    {
+        GregorianCalendar cal = new GregorianCalendar ();
+        cal.setTimeZone ( TimeZone.getTimeZone ( "UTC" ) );
+        if ( value.contains ( ":" ) )
+        {
+            final SimpleDateFormat format = new SimpleDateFormat ( "HH:mm:ss.SSS" );
+            cal.setTime ( format.parse ( value ) );
+        }
+        else
+        {
+            cal.setTime ( new Date ( Long.parseLong ( value ) ) );
+        }
+
+        final XMLGregorianCalendar xcal = DatatypeFactory.newInstance ().newXMLGregorianCalendarTime ( cal.get ( Calendar.HOUR_OF_DAY ), cal.get ( Calendar.MINUTE ), cal.get ( Calendar.SECOND ), ( Calendar.MILLISECOND ), 0 );
+        return xcal;
+    }
+
+    private static Boolean toBoolean ( String value )
+    {
+        if ( value == null )
+        {
+            return false;
+        }
+        return Arrays.asList ( "true", "t", "yes", "y", "1" ).contains ( value.toLowerCase () );
     }
 
     private static List<String> toStringList ( String value )
