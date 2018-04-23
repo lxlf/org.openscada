@@ -10,7 +10,7 @@
 	<packaging>pom</packaging>
 
 	<organization>
-		<name>openSCADA</name>
+		<name>The openSCADA Project</name>
 		<url>http://openscada.org</url>
 	</organization>
 
@@ -234,6 +234,57 @@
 				<assemble.target.path>${java.io.tmpdir}/openscada/assemble</assemble.target.path>
 			</properties>
 
+		</profile>
+
+		<profile>
+			<id>integration</id>
+
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<distributionManagement>
+				<downloadUrl>http://thedrone.packagedrone.org/maven/openscada-1.5-integration</downloadUrl>
+				<repository>
+					<id>openscada-integration</id>
+					<name>openSCADA Maven Repository</name>
+					<url>http://thedrone.packagedrone.org/maven/openscada-1.5-integration</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+
+		<profile>
+			<id>milestone</id>
+
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<distributionManagement>
+				<downloadUrl>http://thedrone.packagedrone.org/maven/openscada-1.5-milestone</downloadUrl>
+				<repository>
+					<id>openscada-milestone</id>
+					<name>openSCADA Maven Repository</name>
+					<url>http://thedrone.packagedrone.org/maven/openscada-1.5-milestone</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+
+		<profile>
+			<id>release</id>
+
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<distributionManagement>
+				<downloadUrl>http://thedrone.packagedrone.org/maven/openscada-1.5</downloadUrl>
+				<repository>
+					<id>openscada-release</id>
+					<name>openSCADA Maven Repository</name>
+					<url>http://thedrone.packagedrone.org/maven/openscada-1.5</url>
+				</repository>
+			</distributionManagement>
 		</profile>
 	</profiles>
 	

@@ -9,5 +9,15 @@
 			<username>deploy</username>
 			<password>${env.CI_DEPLOY_KEY}</password>
 		</server>
+		<server>
+			<id>openscada-milestone</id>
+			<username>deploy</username>
+			<password>${env.CI_DEPLOY_KEY}</password>
+		</server>
+		<server>
+			<id>openscada-release</id>
+			<username>deploy</username>
+			<password>${env.CI_DEPLOY_KEY}</password>
+		</server>
 	</servers>
 </settings>
