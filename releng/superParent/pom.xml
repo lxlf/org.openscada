@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -14,9 +15,6 @@
 	</organization>
 
 	<properties>
-		<openscada.release>1.5</openscada.release>
-		<openscada.releaseType>nightly</openscada.releaseType>
-
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -24,12 +22,24 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 
 		<tycho.scmUrl>scm:git:git@github.com:ibh-systems/org.openscada.git</tycho.scmUrl>
-		<tycho-version>1.0.0</tycho-version>
-		<tycho-extras-version>1.0.0</tycho-extras-version>
+		<tycho-version>1.1.0</tycho-version>
+		<tycho-extras-version>1.1.0</tycho-extras-version>
+
+		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+		<buildTimestamp>${maven.build.timestamp}</buildTimestamp>
+		<reactorBuildTimestampProperty>${maven.build.timestamp}</reactorBuildTimestampProperty>
+
+		<release.buildType>N</release.buildType>
+		<release.buildTypeLong>nightly</release.buildTypeLong>
+		<release.major.minor>1.5</release.major.minor>
+		<release.micro>0</release.micro>
+		<release.fullVersion>${release.major.minor}.${release.micro}</release.fullVersion>
+		<p2tom2.version>0.5.0</p2tom2.version>
 	</properties>
 
 	<modules>
 		<module>targetPlatform</module>
+		<module>../org.openscada.releng.buildinfo</module>
 		<module>../../external/org.openscada.external-parent</module>
 		<module>../../jinterop/org.openscada.jinterop-parent</module>
 		<module>../../utgard/org.openscada.utgard-parent</module>
@@ -38,6 +48,7 @@
 		<module>../org.openscada-p2</module>
 		<module>dist/deb</module>
 		<module>dist/rpm</module>
+		<module>../org.openscada.releng.publish</module>
 	</modules>
 
 	<build>
@@ -77,6 +88,11 @@
 					<groupId>de.dentrassi.maven</groupId>
 					<artifactId>rpm</artifactId>
 					<version>0.8.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.8</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -186,6 +202,44 @@
 
 	<profiles>
 		<profile>
+			<id>local</id>
+
+			<activation>
+				<property>
+					<name>!env.CI</name>
+				</property>
+			</activation>
+
+			<properties>
+				<tmp.target.path>${user.home}/.openscada/b/tmp</tmp.target.path>
+				<publish.target.path>${user.home}/.openscada/b/publish</publish.target.path>
+				<assemble.target.path>${user.home}/.openscada/b/assemble</assemble.target.path>
+			</properties>
+
+		</profile>
+
+		<profile>
+			<id>travis</id>
+
+			<activation>
+				<property>
+					<name>env.CI</name>
+					<value>TRAVIS</value>
+				</property>
+			</activation>
+
+			<properties>
+				<tmp.target.path>${java.io.tmpdir}/openscada/tmp</tmp.target.path>
+				<publish.target.path>${java.io.tmpdir}/openscada/publish</publish.target.path>
+				<assemble.target.path>${java.io.tmpdir}/openscada/assemble</assemble.target.path>
+			</properties>
+
+		</profile>
+	</profiles>
+	
+	<!-- 
+	<profiles>
+		<profile>
 			<id>just-compile</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -292,5 +346,6 @@
 			</distributionManagement>
 		</profile>
 	</profiles>
+	 -->
 
 </project>

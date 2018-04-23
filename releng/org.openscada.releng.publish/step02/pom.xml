@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.openscada</groupId>
+		<artifactId>org.openscada.releng.publish</artifactId>
+		<version>1.5.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<artifactId>org.openscada.releng.publish.step02</artifactId>
+	<packaging>pom</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>de.dentrassi.build</groupId>
+				<artifactId>apt-repo</artifactId>
+				<version>0.0.2</version>
+
+				<executions>
+					<execution>
+						<id>step-02-apt</id>
+						<phase>package</phase>
+						<goals>
+							<goal>apt</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>${tmp.target.path}/deb</sourceDirectory>
+							<outputDirectory>${tmp.target.path}/apt</outputDirectory>
+							<description>The openscada.org repository</description>
+							<distributionName>default</distributionName>
+							<distributionLabel>The default distribution for this release</distributionLabel>
+							<componentLabel>The main component</componentLabel>
+							<origin>openscada.org Project</origin>
+							<architectures>
+								<architecture>i386</architecture>
+								<architecture>amd64</architecture>
+								<architecture>armhf</architecture>
+								<architecture>armel</architecture>
+							</architectures>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>de.dentrassi.maven</groupId>
+				<artifactId>rpm</artifactId>
+
+				<executions>
+					<execution>
+						<id>step-02-yum</id>
+						<phase>package</phase>
+						<goals>
+							<goal>yum-repository</goal>
+						</goals>
+						<configuration>
+							<directories>${tmp.target.path}/rpm</directories>
+							<outputDirectory>${tmp.target.path}/yum</outputDirectory>
+							<skipDependencies>true</skipDependencies>
+							<skipSigning>true</skipSigning>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     12.01.2018 12:59:54                                                        
+
+     project    
+     description
+                   
+     jrose                                                                
+     ====================================================================== -->
+<project name="artifact assembly" default="run">
+	<description>
+        now try to create maven repo from p2 repo
+    </description>
+
+	<property file="${basedir}/../generated/src/main/resources/buildinfo.properties" prefix="imported" />
+	<property file="${basedir}/../generated/src/main/resources/publish.properties" />
+
+	<property environment="env" />
+	<property name="env.JAVA_ARGS" value="" />
+
+	<!-- ================================= 
+          target: default              
+         ================================= -->
+	<target name="run" description="description">
+		<mkdir dir="${assemble.target.path}/downloads/org.openscada/drops/${imported.release.fullVersion}/${imported.release.buildType}${imported.build.timestamp}/maven" />
+		<mkdir dir="${tmp.target.path}/p2tom2/tmp" />
+
+		<echo message="P2toM2: ${p2tom2.version}" />
+
+		<get src="http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/eclipsescada/releng/p2tom2-${p2tom2.version}.zip" dest="${tmp.target.path}/p2tom2.zip" usetimestamp="true" />
+		<unzip src="${tmp.target.path}/p2tom2.zip" dest="${tmp.target.path}/p2tom2" />
+
+		<java classname="org.eclipse.equinox.launcher.Main" fork="true" failonerror="true" dir="${tmp.target.path}/p2tom2">
+			<classpath>
+				<fileset dir="${tmp.target.path}/p2tom2/plugins">
+					<include name="org.eclipse.equinox.launcher_*.jar" />
+				</fileset>
+			</classpath>
+
+			<jvmarg line="${env.JAVA_ARGS}" />
+
+			<arg value="-consoleLog" />
+
+			<!-- configuration -->
+			<arg value="file://${basedir}/p2tom2.properties" />
+			<!-- source repo -->
+			<arg value="file://${assemble.target.path}/downloads/org.openscada/drops/${imported.release.fullVersion}/${imported.release.buildType}${imported.build.timestamp}/p2" />
+			<!-- validation repos -->
+			<arg value="http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/releases/mars" />
+			<arg value="http://ftp-stud.hs-esslingen.de/Mirrors/eclipse/eclipsescada/downloads/org.eclipse.scada/drops/0.3.0/R201604140500/p2" />
+
+			<sysproperty key="local.proxy.host" value="" />
+			<sysproperty key="local.proxy.port" value="" />
+
+			<sysproperty key="path.p2temp" file="${tmp.target.path}/p2tom2/tmp" />
+			<sysproperty key="path.output" file="${assemble.target.path}/downloads/org.openscada/drops/${imported.release.fullVersion}/${imported.release.buildType}${imported.build.timestamp}/maven" />
+			<sysproperty key="stripQualifier" value="true" />
+			<sysproperty key="fakeForCentral" value="true" />
+			<sysproperty key="groupIdPrefix" value="org.openscada" />
+		</java>
+	</target>
+</project>

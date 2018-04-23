@@ -51,14 +51,13 @@
 				<!-- since we skip clean above, we still want to have the ability to 
 					clean, so just do that manually here -->
 				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
 				<executions>
 					<execution>
 						<phase>clean</phase>
 						<configuration>
 							<target>
-								<delete>
-									<fileset dir="./target" includes="**/*.*" includeemptydirs="true" />
+								<delete includeemptydirs="true">
+									<fileset dir="./target" includes="**/*.*" />
 								</delete>
 							</target>
 						</configuration>

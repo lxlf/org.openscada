@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     12.01.2018 12:59:54                                                        
+
+     project    
+     description
+                   
+     jrose                                                                
+     ====================================================================== -->
+<project name="artifact assembly" default="run">
+	<description>
+        assembles all build artifacts
+    </description>
+
+	<property file="${basedir}/../generated/src/main/resources/buildinfo.properties" prefix="imported" />
+	<property file="${basedir}/../generated/src/main/resources/publish.properties" />
+
+
+	<!-- ================================= 
+          target: default              
+         ================================= -->
+	<target name="run" description="description">
+		<mkdir dir="${assemble.target.path}/downloads/org.openscada/drops/${imported.release.fullVersion}/${imported.release.buildType}${imported.build.timestamp}/pack" />
+		<mkdir dir="${assemble.target.path}/downloads/org.openscada/drops/${imported.release.fullVersion}/${imported.release.buildType}${imported.build.timestamp}/packages" />
+
+		<copy todir="${assemble.target.path}/downloads/org.openscada/drops/${imported.release.fullVersion}/${imported.release.buildType}${imported.build.timestamp}/p2">
+			<fileset dir="${basedir}/../../org.openscada-p2/target/repository">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy todir="${assemble.target.path}/downloads/org.openscada/drops/${imported.release.fullVersion}/${imported.release.buildType}${imported.build.timestamp}/pack">
+			<fileset dir="${basedir}/../../org.openscada-p2/target/">
+				<include name="org.openscada-${imported.pom.version}.zip"/>
+			</fileset>
+		</copy>
+		<copy todir="${assemble.target.path}/downloads/org.openscada/drops/${imported.release.fullVersion}/${imported.release.buildType}${imported.build.timestamp}/packages">
+			<fileset dir="${basedir}/../../superParent/dist/deb/p2/target">
+				<include name="*.deb"/>
+			</fileset>
+			<fileset dir="${basedir}/../../superParent/dist/deb/postgres/target">
+				<include name="*.deb"/>
+			</fileset>
+			<fileset dir="${basedir}/../../superParent/dist/rpm/p2/target">
+				<include name="*.rpm"/>
+			</fileset>
+			<fileset dir="${basedir}/../../superParent/dist/rpm/postgres/target">
+				<include name="*.rpm"/>
+			</fileset>
+		</copy>
+		<copy todir="${tmp.target.path}/deb">
+			<fileset dir="${basedir}/../../superParent/dist/deb/p2/target">
+				<include name="*.deb"/>
+			</fileset>
+			<fileset dir="${basedir}/../../superParent/dist/deb/postgres/target">
+				<include name="*.deb"/>
+			</fileset>
+		</copy>
+		<copy todir="${tmp.target.path}/rpm">
+			<fileset dir="${basedir}/../../superParent/dist/rpm/p2/target">
+				<include name="*.rpm"/>
+			</fileset>
+			<fileset dir="${basedir}/../../superParent/dist/rpm/postgres/target">
+				<include name="*.rpm"/>
+			</fileset>
+		</copy>
+	</target>
+
+</project>
