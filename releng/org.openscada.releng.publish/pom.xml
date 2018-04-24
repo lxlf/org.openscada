@@ -21,7 +21,7 @@
 		<module>step03</module>
 		<!-- module>step04</module there is no step 4, no need to combine repos -->
 		<module>step05</module>
-
+		<module>step06</module>
 	</modules>
 
 	<build>

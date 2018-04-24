@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     12.01.2018 12:59:54                                                        
+
+     project    
+     description
+                   
+     jrose                                                                
+     ====================================================================== -->
+<project name="artifact assembly" default="run">
+	<description>
+        now also copy repos to the assemble directory
+    </description>
+
+	<property file="${basedir}/../generated/src/main/resources/buildinfo.properties" prefix="imported" />
+	<property file="${basedir}/../generated/src/main/resources/publish.properties" />
+
+
+	<!-- ================================= 
+          target: default              
+         ================================= -->
+	<target name="run" description="description">
+
+		<copy todir="${publish.target.path}/" verbose="true">
+			<fileset dir="${assemble.target.path}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+	</target>
+</project>
