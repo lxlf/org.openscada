@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: openSCADA j-Interop Core
 Bundle-SymbolicName: org.openscada.jinterop.core
-Bundle-Version: 2.1.8.qualifier
+Bundle-Version: 2.1.8
 Bundle-Vendor: openSCADA
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: jcifs;version="1.2.25",
  jcifs.smb;version="1.2.25",
  jcifs.util;version="1.2.25",
  ndr,
- org.openscada.uuid;version="1.2.0",
+ org.openscada.uuid;version="1.5.0",
  org.slf4j;version="1.6.0",
  rpc,
  rpc.core,

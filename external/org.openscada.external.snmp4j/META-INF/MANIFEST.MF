@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SNMP4J
 Bundle-SymbolicName: org.openscada.external.snmp4j
-Bundle-Version: 2.2.5.qualifier
+Bundle-Version: 2.2.5
 Bundle-Vendor: openSCADA.org
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: org.apache.log4j;version="1.2.15",

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: IEC60870-5-104 Hive
 Bundle-SymbolicName: org.openscada.da.server.iec60870
-Bundle-Version: 1.5.0.qualifier
+Bundle-Version: 1.5.0
 Bundle-Vendor: openSCADA.org
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: com.google.common.util.concurrent;version="15.0.0",
@@ -33,8 +33,8 @@ Import-Package: com.google.common.util.concurrent;version="15.0.0",
  org.eclipse.scada.sec.osgi;version="0.1.0",
  org.eclipse.scada.utils.beans;version="0.2.0",
  org.eclipse.scada.utils.concurrent;version="0.2.0",
- org.openscada.core.common.iec60870;version="1.3.0",
- org.openscada.da.server.common;version="1.4.0",
+ org.openscada.core.common.iec60870;version="1.5.0",
+ org.openscada.da.server.common;version="1.5.0",
  org.openscada.protocol.iec60870;version="1.5.0",
  org.openscada.protocol.iec60870.asdu;version="1.5.0",
  org.openscada.protocol.iec60870.asdu.message;version="1.5.0",

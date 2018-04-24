@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<name>/releng/org.openscada.releng.buildinfo</name>
@@ -9,7 +7,7 @@
 	<parent>
 		<groupId>org.openscada</groupId>
 		<artifactId>superParent</artifactId>
-		<version>1.5.0-SNAPSHOT</version>
+		<version>1.5.0</version>
 		<relativePath>../superParent</relativePath>
 	</parent>
 
@@ -28,27 +26,18 @@
 						<phase>compile</phase>
 						<configuration>
 							<target>
-								<propertyfile
-									file="${project.basedir}/../org.openscada.releng.publish/generated/src/main/resources/buildinfo.properties">
-									<entry key="release.buildType"
-										value="${release.buildType}" />
-									<entry key="release.buildTypeLong"
-										value="${release.buildTypeLong}" />
-									<entry key="release.major.minor"
-										value="${release.major.minor}" />
-									<entry key="release.micro" value="${release.micro}" />
-									<entry key="release.fullVersion"
-										value="${release.major.minor}.${release.micro}" />
-									<entry key="build.timestamp" value="${buildTimestamp}" />
-									<entry key="alternateBuildTimestamp"
-										value="${buildTimestamp}" />
-									<entry key="jgit.buildQualifier"
-										value="${buildQualifier}" />
-									<entry key="jgit.unqualifiedVersion"
-										value="${unqualifiedVersion}" />
-									<entry key="jgit.qualifiedVersion"
-										value="${qualifiedVersion}" />
-									<entry key="pom.version" value="${project.version}" />
+								<propertyfile file="${project.basedir}/../org.openscada.releng.publish/generated/src/main/resources/buildinfo.properties">
+									<entry key="release.buildType" value="${release.buildType}"/>
+									<entry key="release.buildTypeLong" value="${release.buildTypeLong}"/>
+									<entry key="release.major.minor" value="${release.major.minor}"/>
+									<entry key="release.micro" value="${release.micro}"/>
+									<entry key="release.fullVersion" value="${release.major.minor}.${release.micro}"/>
+									<entry key="build.timestamp" value="${buildTimestamp}"/>
+									<entry key="alternateBuildTimestamp" value="${buildTimestamp}"/>
+									<entry key="jgit.buildQualifier" value="${buildQualifier}"/>
+									<entry key="jgit.unqualifiedVersion" value="${unqualifiedVersion}"/>
+									<entry key="jgit.qualifiedVersion" value="${qualifiedVersion}"/>
+									<entry key="pom.version" value="${project.version}"/>
 								</propertyfile>
 							</target>
 						</configuration>

@@ -2,10 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse SCADA IEC60870 Client
 Bundle-SymbolicName: org.openscada.protocol.iec60870.client
-Bundle-Version: 1.5.0.qualifier
+Bundle-Version: 1.5.0
 Bundle-Vendor: openSCADA.org
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: org.openscada.protocol.iec60870.client;version="1.5.0";uses:="io.netty.channel,com.google.common.util.concurrent,io.netty.channel.socket"
+Export-Package: org.openscada.protocol.iec60870.client;version="1.5.0";
+  uses:="io.netty.channel,
+   com.google.common.util.concurrent,
+   io.netty.channel.socket"
 Import-Package: com.google.common.net;version="15.0.0",
  com.google.common.util.concurrent;version="15.0.0",
  io.netty.bootstrap;version="4.0.19",

@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.openscada.configuration.snmp"
-      label="%featureName"
-      version="1.5.0.qualifier"
-      provider-name="%providerName"
-      license-feature="org.eclipse.scada.license"
-      license-feature-version="0.1.0.qualifier">
+<feature id="org.openscada.configuration.snmp" label="%featureName" version="1.5.0" provider-name="%providerName" license-feature="org.eclipse.scada.license" license-feature-version="0.1.0.qualifier">
 
    <description>
       %description
@@ -45,18 +39,8 @@
       <import plugin="org.openscada.da.server.snmp.edit"/>
    </requires>
 
-   <plugin
-         id="org.openscada.configuration.snmp"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.configuration.snmp" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="org.openscada.configuration.snmp.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.configuration.snmp.edit" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
 </feature>

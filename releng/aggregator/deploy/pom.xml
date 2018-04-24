@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>org.openscada</groupId>
 		<artifactId>aggregator</artifactId>
-		<version>1.5.0-SNAPSHOT</version>
+		<version>1.5.0</version>
 		<relativePath>..</relativePath>
 	</parent>
 
@@ -83,17 +82,17 @@
 						<phase>package</phase>
 						<configuration>
 							<target>
-								<mkdir dir="${project.build.directory}/p2" />
+								<mkdir dir="${project.build.directory}/p2"/>
 								<unzip dest="${project.build.directory}/p2">
-									<fileset dir="${project.build.directory}/zip" includes="*.zip" />
+									<fileset dir="${project.build.directory}/zip" includes="*.zip"/>
 								</unzip>
-								<mkdir dir="${project.build.directory}/javadoc" />
+								<mkdir dir="${project.build.directory}/javadoc"/>
 								<copy todir="${project.build.directory}/javadoc">
-									<fileset dir="${project.build.directory}/jd" includes="*-javadoc.jar" />
-									<mapper type="merge" to="org.openscada-javadoc.jar" />
+									<fileset dir="${project.build.directory}/jd" includes="*-javadoc.jar"/>
+									<mapper type="merge" to="org.openscada-javadoc.jar"/>
 								</copy>
 								<unzip dest="${project.build.directory}/javadoc">
-									<fileset dir="${project.build.directory}/jd" includes="*-javadoc.jar" />
+									<fileset dir="${project.build.directory}/jd" includes="*-javadoc.jar"/>
 								</unzip>
 							</target>
 						</configuration>

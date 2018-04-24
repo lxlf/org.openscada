@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>org.openscada</groupId>
 		<artifactId>org.openscada.releng.publish</artifactId>
-		<version>1.5.0-SNAPSHOT</version>
+		<version>1.5.0</version>
 		<relativePath>../</relativePath>
 	</parent>
 
@@ -24,12 +23,11 @@
 						<phase>package</phase>
 						<configuration>
 							<target name="run">
-								<propertyfile
-									file="${project.basedir}/../generated/src/main/resources/publish.properties">
-									<entry key="tmp.target.path" value="${tmp.target.path}" />
-									<entry key="publish.target.path" value="${publish.target.path}" />
-									<entry key="assemble.target.path" value="${assemble.target.path}" />
-									<entry key="p2tom2.version" value="${p2tom2.version}" />
+								<propertyfile file="${project.basedir}/../generated/src/main/resources/publish.properties">
+									<entry key="tmp.target.path" value="${tmp.target.path}"/>
+									<entry key="publish.target.path" value="${publish.target.path}"/>
+									<entry key="assemble.target.path" value="${assemble.target.path}"/>
+									<entry key="p2tom2.version" value="${p2tom2.version}"/>
 								</propertyfile>
 							</target>
 						</configuration>
@@ -43,10 +41,10 @@
 						<configuration>
 							<target name="run">
 								<delete includeemptydirs="true" failonerror="false">
-									<fileset dir="${tmp.target.path}" includes="**/*" />
+									<fileset dir="${tmp.target.path}" includes="**/*"/>
 								</delete>
 								<delete includeemptydirs="true" failonerror="false">
-									<fileset dir="${assemble.target.path}" includes="**/*" />
+									<fileset dir="${assemble.target.path}" includes="**/*"/>
 								</delete>
 							</target>
 						</configuration>

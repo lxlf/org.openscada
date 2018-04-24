@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Postgresql 9.3 JDBC4 Driver
 Bundle-SymbolicName: org.openscada.external.postgresql
-Bundle-Version: 9.3.1101.qualifier
+Bundle-Version: 9.3.1101
 Bundle-Vendor: openSCADA.org
 Export-Package: org.postgresql;version="9.3.0";uses:="org.postgresql.largeobject,org.postgresql.fastpath,org.postgresql.copy",
  org.postgresql.copy;version="9.3.0";uses:="org.postgresql,org.postgresql.core",

@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.openscada.external"
-      label="openSCADA Externals Feature"
-      version="1.5.0.qualifier"
-      provider-name="openSCADA.org">
+<feature id="org.openscada.external" label="openSCADA Externals Feature" version="1.5.0" provider-name="openSCADA.org">
 
    <description>
       This is a wrapper feature for all external bundles which are
@@ -18,67 +14,22 @@ needed by openSCADA.
       See the specific bundle for its license information.
    </license>
 
-   <plugin
-         id="org.openscada.external.postgresql"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
+   <plugin id="org.openscada.external.postgresql" download-size="0" install-size="0" version="0.0.0"/>
 
-   <plugin
-         id="org.openscada.external.odfdom"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.external.odfdom" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="org.openscada.external.jcifs"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.external.jcifs" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="bcprov"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="bcprov" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="javax.transaction"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
+   <plugin id="javax.transaction" download-size="0" install-size="0" version="0.0.0" fragment="true" unpack="false"/>
 
-   <plugin
-         id="org.openscada.external.snmp4j"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.external.snmp4j" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="com.eclipsesource.jaxrs.provider.gson"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="com.eclipsesource.jaxrs.provider.gson" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="com.eclipsesource.jaxrs.publisher"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="com.eclipsesource.jaxrs.publisher" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="com.eclipsesource.jaxrs.jersey-all"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="com.eclipsesource.jaxrs.jersey-all" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
 </feature>

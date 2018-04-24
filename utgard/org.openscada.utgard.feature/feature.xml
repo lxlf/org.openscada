@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.openscada.utgard"
-      label="%featureName"
-      version="1.5.0.qualifier"
-      provider-name="openSCADA.org">
+<feature id="org.openscada.utgard" label="%featureName" version="1.5.0" provider-name="openSCADA.org">
 
    <description>
       openSCADA OPC Components
@@ -25,25 +21,10 @@
       <import plugin="org.eclipse.osgi"/>
    </requires>
 
-   <plugin
-         id="org.openscada.opc.dcom"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.opc.dcom" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="org.openscada.opc.lib"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.opc.lib" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="org.openscada.opc.xmlda"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.opc.xmlda" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
 </feature>

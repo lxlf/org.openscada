@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.openscada.external.sdk"
-      label="openSCADA External SDK Feature"
-      version="1.5.0.qualifier"
-      provider-name="openSCADA.org">
+<feature id="org.openscada.external.sdk" label="openSCADA External SDK Feature" version="1.5.0" provider-name="openSCADA.org">
 
    <description>
       This is a wrapper feature for all external bundles which are needed by openSCADA.
@@ -17,8 +13,6 @@
       See the specific bundle for its license information.
    </license>
 
-   <includes
-         id="org.openscada.external"
-         version="0.0.0"/>
+   <includes id="org.openscada.external" version="0.0.0"/>
 
 </feature>

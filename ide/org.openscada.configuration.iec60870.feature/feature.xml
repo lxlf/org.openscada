@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.openscada.configuration.iec60870"
-      label="%featureName"
-      version="1.5.0.qualifier"
-      provider-name="%providerName"
-      license-feature="org.eclipse.scada.license"
-      license-feature-version="0.1.0.qualifier">
+<feature id="org.openscada.configuration.iec60870" label="%featureName" version="1.5.0" provider-name="%providerName" license-feature="org.eclipse.scada.license" license-feature-version="0.1.0.qualifier">
 
    <description>
       %description
@@ -19,25 +13,10 @@
       %license
    </license>
 
-   <plugin
-         id="org.openscada.configuration.iec60870"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.configuration.iec60870" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="org.openscada.configuration.iec60870.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.configuration.iec60870.edit" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
-   <plugin
-         id="org.openscada.configuration.iec60870.lib"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin id="org.openscada.configuration.iec60870.lib" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
 </feature>

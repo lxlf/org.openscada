@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.openscada.da.server.opc;singleton:=true
-Bundle-Version: 1.5.0.qualifier
+Bundle-Version: 1.5.0
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -45,13 +45,13 @@ Import-Package: org.eclipse.scada.core;version="0.1.0",
  org.eclipse.scada.utils.str;version="0.1.0",
  org.jinterop.dcom.common;version="2.0.0",
  org.jinterop.dcom.core;version="2.0.0",
- org.openscada.opc.dcom.common;version="1.0.0",
- org.openscada.opc.dcom.common.impl;version="1.0.0",
- org.openscada.opc.dcom.da;version="1.0.0",
- org.openscada.opc.dcom.da.impl;version="1.0.0",
- org.openscada.opc.lib.common;version="1.0.0",
- org.openscada.opc.lib.da;version="1.0.0",
- org.openscada.opc.lib.da.browser;version="1.0.0",
+ org.openscada.opc.dcom.common;version="1.5.0",
+ org.openscada.opc.dcom.common.impl;version="1.5.0",
+ org.openscada.opc.dcom.da;version="1.5.0",
+ org.openscada.opc.dcom.da.impl;version="1.5.0",
+ org.openscada.opc.lib.common;version="1.5.0",
+ org.openscada.opc.lib.da;version="1.5.0",
+ org.openscada.opc.lib.da.browser;version="1.5.0",
  org.slf4j;version="1.5.0"
 Service-Component: OSGI-INF/hive.xml
 Bundle-ActivationPolicy: lazy
